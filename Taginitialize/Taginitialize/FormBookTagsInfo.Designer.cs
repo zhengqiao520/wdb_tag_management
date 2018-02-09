@@ -40,14 +40,14 @@
             this.gvRecordList = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
@@ -175,6 +175,8 @@
             this.gvRecordList.Name = "gvRecordList";
             this.gvRecordList.OptionsNavigation.AutoFocusNewRow = true;
             this.gvRecordList.OptionsSelection.MultiSelect = true;
+            this.gvRecordList.OptionsView.ShowAutoFilterRow = true;
+            this.gvRecordList.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.ShowAlways;
             this.gvRecordList.OptionsView.ShowFooter = true;
             // 
             // gridColumn1
@@ -199,6 +201,22 @@
             this.gridColumn2.VisibleIndex = 1;
             this.gridColumn2.Width = 90;
             // 
+            // gridColumn9
+            // 
+            this.gridColumn9.Caption = "书柜编号";
+            this.gridColumn9.FieldName = "code";
+            this.gridColumn9.Name = "gridColumn9";
+            this.gridColumn9.Visible = true;
+            this.gridColumn9.VisibleIndex = 6;
+            // 
+            // gridColumn10
+            // 
+            this.gridColumn10.Caption = "当前书格";
+            this.gridColumn10.FieldName = "current_grid_code";
+            this.gridColumn10.Name = "gridColumn10";
+            this.gridColumn10.Visible = true;
+            this.gridColumn10.VisibleIndex = 5;
+            // 
             // gridColumn6
             // 
             this.gridColumn6.Caption = "图书名称";
@@ -207,6 +225,31 @@
             this.gridColumn6.Visible = true;
             this.gridColumn6.VisibleIndex = 2;
             this.gridColumn6.Width = 135;
+            // 
+            // gridColumn7
+            // 
+            this.gridColumn7.Caption = "借阅状态";
+            this.gridColumn7.FieldName = "borrowed_status_text";
+            this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.Visible = true;
+            this.gridColumn7.VisibleIndex = 4;
+            // 
+            // gridColumn8
+            // 
+            this.gridColumn8.Caption = "投放地点";
+            this.gridColumn8.FieldName = "area";
+            this.gridColumn8.Name = "gridColumn8";
+            this.gridColumn8.Visible = true;
+            this.gridColumn8.VisibleIndex = 7;
+            // 
+            // gridColumn5
+            // 
+            this.gridColumn5.Caption = "标签操作人";
+            this.gridColumn5.FieldName = "account";
+            this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.Visible = true;
+            this.gridColumn5.VisibleIndex = 8;
+            this.gridColumn5.Width = 90;
             // 
             // gridColumn4
             // 
@@ -226,47 +269,6 @@
             this.repositoryItemTextEdit1.AutoHeight = false;
             this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
             // 
-            // gridColumn5
-            // 
-            this.gridColumn5.Caption = "标签操作人";
-            this.gridColumn5.FieldName = "account";
-            this.gridColumn5.Name = "gridColumn5";
-            this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 8;
-            this.gridColumn5.Width = 90;
-            // 
-            // gridColumn7
-            // 
-            this.gridColumn7.Caption = "借阅状态";
-            this.gridColumn7.FieldName = "borrowed_status_text";
-            this.gridColumn7.Name = "gridColumn7";
-            this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 4;
-            // 
-            // gridColumn8
-            // 
-            this.gridColumn8.Caption = "投放地点";
-            this.gridColumn8.FieldName = "area";
-            this.gridColumn8.Name = "gridColumn8";
-            this.gridColumn8.Visible = true;
-            this.gridColumn8.VisibleIndex = 7;
-            // 
-            // gridColumn9
-            // 
-            this.gridColumn9.Caption = "书柜编号";
-            this.gridColumn9.FieldName = "code";
-            this.gridColumn9.Name = "gridColumn9";
-            this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 6;
-            // 
-            // gridColumn10
-            // 
-            this.gridColumn10.Caption = "当前书格";
-            this.gridColumn10.FieldName = "current_grid_code";
-            this.gridColumn10.Name = "gridColumn10";
-            this.gridColumn10.Visible = true;
-            this.gridColumn10.VisibleIndex = 5;
-            // 
             // FormBookTagsInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -274,7 +276,7 @@
             this.ClientSize = new System.Drawing.Size(1082, 734);
             this.Controls.Add(this.splitContainerControl1);
             this.Name = "FormBookTagsInfo";
-            this.Text = "FormBookTagsInfo";
+            this.Text = "网点图书情况";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormBookTagsInfo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();

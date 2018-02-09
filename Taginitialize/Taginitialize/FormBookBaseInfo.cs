@@ -138,7 +138,7 @@ namespace Phychips.PR9200
             }
             if (rowEnum == RowEnum.PreviousRow) {
                 rowHander = --rowHander;
-                bookInfoExtend = gvSystem.GetRow(--rowHander) as BookInfoExtend;
+                bookInfoExtend = gvSystem.GetRow(rowHander) as BookInfoExtend;
             }
             gvSystem.SelectRow(rowHander);
             gvSystem.FocusedRowHandle = rowHander;

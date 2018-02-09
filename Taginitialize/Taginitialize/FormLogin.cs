@@ -56,6 +56,7 @@ namespace Phychips.PR9200
                     UserInfo.Instance.user_account = book_init_user.user_account;
                     UserInfo.Instance.user_name = book_init_user.user_name;
                     UserInfo.Instance.user_password = book_init_user.user_password;
+                    UserInfo.Instance.remarks = book_init_user.remarks;
                     new TagInitEntry(UserInfo.Instance).Show();
                     WinAPI.AnimateWindow(Handle, 500, WinAPI.AW_CENTER | WinAPI.AW_HIDE);
                 }
@@ -93,7 +94,7 @@ namespace Phychips.PR9200
         }
         private void txtPassword_TextChanged(object sender, EventArgs e)
         {
-            radioDatabase.Visible = txtPassword.Text.Trim().Equals("1986425") && txtUserName.Text.Equals("admin")|| txtUserName.Text.Equals("tianyingwen");
+            radioDatabase.Visible =txtUserName.Text.Equals("admin")|| txtUserName.Text.Equals("tianyingwen");
         }
     }
 

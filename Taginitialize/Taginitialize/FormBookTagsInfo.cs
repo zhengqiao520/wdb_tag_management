@@ -41,9 +41,7 @@ namespace Phychips.PR9200
         public FormBookTagsInfo()
         {
             InitializeComponent();
-            gvRecordList.OptionsCustomization.AllowFilter = true;
-            gvRecordList.IndicatorWidth = 80;
-            gvRecordList.OptionsView.ShowIndicator = true;
+           
             gvRecordList.CustomDrawRowIndicator += (s, e) => initRowIndicator(e);
             gvRecordList.RowStyle += GvRecordList_RowStyle;
         }
@@ -53,6 +51,9 @@ namespace Phychips.PR9200
             listBookshelfInfo = TagInfoDAL.GetInfoList<BookshelfInfo>("select * from bookshelf_info", null, null);
             grdBookshelfInfo.DataSource = listBookshelfInfo;
             grdRecordList.DataSource = GetRecordList();
+            gvRecordList.OptionsCustomization.AllowFilter = true;
+            gvRecordList.IndicatorWidth = 80;
+            gvRecordList.OptionsView.ShowIndicator = true;
         }
 
         private void grdBookshelfInfo_DoubleClick(object sender, EventArgs e)
