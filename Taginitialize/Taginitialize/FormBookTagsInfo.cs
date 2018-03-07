@@ -54,6 +54,7 @@ namespace Phychips.PR9200
             gvRecordList.OptionsCustomization.AllowFilter = true;
             gvRecordList.IndicatorWidth = 80;
             gvRecordList.OptionsView.ShowIndicator = true;
+            //gvRecordList.VisibleColumns[5].Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right;
         }
 
         private void grdBookshelfInfo_DoubleClick(object sender, EventArgs e)
@@ -83,6 +84,17 @@ namespace Phychips.PR9200
             {
                 gvRecordList.ActiveFilter.Clear();
                 gvRecordList.ActiveFilter.NonColumnFilter = $"code='{bookShelfInfo.code}'";
+            }
+        }
+
+        private void 导出Excel文件ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sav = new SaveFileDialog();
+            sav.Filter = "Excel文件(*.xls)|*.xls"; 
+            sav.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            if (sav.ShowDialog() == DialogResult.OK) {
+                gvRecordList.ExportToXls(sav.FileName);
+                DevExpress.XtraEditors.XtraMessageBox.Show("保存成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

@@ -58,6 +58,48 @@ namespace Infrastructure
         }
 
         /// <summary>
+        /// HexString to String
+        /// </summary>
+        /// <param name="hexString"></param>
+        /// <param name="encoding"></param>
+        /// <returns></returns>
+        public static string HexStringToString(string hexString, Encoding encoding = null)
+        {
+            try
+            {
+                List<string> listBlock = new List<string>();
+                GenarateHexList(listBlock, hexString);
+                if (string.IsNullOrEmpty(hexString))
+                    return string.Empty;
+
+                if (encoding == null)
+                    encoding = Encoding.ASCII;
+
+                string[] byteitem = listBlock.ToArray();
+                List<byte> lstByte = new List<byte>();
+                foreach (string item in byteitem)
+                    lstByte.Add(Convert.ToByte(item, 16));
+
+                return encoding.GetString(lstByte.ToArray());
+            }
+            catch { }
+            return null;
+        }
+
+        public static void GenarateHexList(List<string> listBlock, string hexString, int startIndex = 0)
+        {
+            try
+            {
+                if (startIndex > hexString.Length) return;
+                string subTex = hexString.Substring(startIndex, 2);
+                listBlock.Add(subTex);
+                startIndex += 2;
+                GenarateHexList(listBlock, hexString, startIndex);
+            }
+            catch { }
+        }
+
+        /// <summary>
         /// <函数：Decode>
         /// 作用：将16进制数据编码转化为字符串，是Encode的逆过程
         /// </summary>

@@ -101,7 +101,7 @@ namespace Phychips.PR9200
                 }
             }
             catch(Exception ee) {
-
+                MessageBox.Show(ee.Message, "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
         public void UpdateGridRow(BookInfoExtend bookInfoExtend) {

@@ -253,6 +253,16 @@ namespace Phychips.PR9200.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap timg {
+            get {
+                object obj = ResourceManager.GetObject("timg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap toggle_log {
             get {
                 object obj = ResourceManager.GetObject("toggle_log", resourceCulture);

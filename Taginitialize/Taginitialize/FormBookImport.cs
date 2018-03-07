@@ -78,8 +78,7 @@ namespace Phychips.PR9200
 
         private void FormBookImport_Load(object sender, EventArgs e)
         {
-            var evn = ConnectInit.IsUATDataBase ? "【测试环境】" : "【生产环境】";
-            Text = Text + $" 当前登录为：{evn}";
+            Text = Text + $" 当前登录为：{UserReflect < object >.GetEnumDescription(ConnectInit.DbType)}";
             this.grdSystem.DataSource = TagInfoDAL.SelectBookInfoExtendList();
 
             gvSystem.OptionsCustomization.AllowFilter = true;                      

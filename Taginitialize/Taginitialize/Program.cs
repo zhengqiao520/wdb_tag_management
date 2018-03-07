@@ -15,7 +15,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Forms;
-
 namespace Phychips.PR9200
 {
     static class Program
@@ -28,7 +27,6 @@ namespace Phychips.PR9200
         {
             try
             {
-                SSHInfo.Instance = Utility.SSHInfo;
                 LogManager.Configuration = new XmlLoggingConfiguration(System.AppDomain.CurrentDomain.BaseDirectory.ToString() + "\\NLog.config");
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);

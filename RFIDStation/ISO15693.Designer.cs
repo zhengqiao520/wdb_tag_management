@@ -28,8 +28,15 @@ namespace RFIDStation
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraPrinting.BarCode.Code39Generator code39Generator1 = new DevExpress.XtraPrinting.BarCode.Code39Generator();
-            DevExpress.XtraPrinting.BarCode.Code39ExtendedGenerator code39ExtendedGenerator1 = new DevExpress.XtraPrinting.BarCode.Code39ExtendedGenerator();
+            this.components = new System.ComponentModel.Container();
+            DevExpress.XtraEditors.TileItemElement tileItemElement5 = new DevExpress.XtraEditors.TileItemElement();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ISO15693));
+            DevExpress.XtraEditors.TileItemElement tileItemElement6 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement7 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement8 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraPrinting.BarCode.CodabarGenerator codabarGenerator3 = new DevExpress.XtraPrinting.BarCode.CodabarGenerator();
+            DevExpress.XtraPrinting.BarCode.CodabarGenerator codabarGenerator4 = new DevExpress.XtraPrinting.BarCode.CodabarGenerator();
             this.tabControlISO15693TagOp = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -167,7 +174,7 @@ namespace RFIDStation
             this.textBoxSelectedIso15693Uid = new System.Windows.Forms.TextBox();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.grdRecordList = new DevExpress.XtraGrid.GridControl();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.gvRecordList = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -179,44 +186,59 @@ namespace RFIDStation
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripTagSyncStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabelEnv = new System.Windows.Forms.ToolStripStatusLabel();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
+            this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.txtMessage = new System.Windows.Forms.RichTextBox();
+            this.tileBar1 = new DevExpress.XtraBars.Navigation.TileBar();
+            this.tileBarGroup2 = new DevExpress.XtraBars.Navigation.TileBarGroup();
+            this.buttonReadTags = new DevExpress.XtraBars.Navigation.TileBarItem();
+            this.btn_ReadTagData = new DevExpress.XtraBars.Navigation.TileBarItem();
+            this.btnClear = new DevExpress.XtraBars.Navigation.TileBarItem();
+            this.tileBarGroup1 = new DevExpress.XtraBars.Navigation.TileBarGroup();
+            this.btnSave = new DevExpress.XtraBars.Navigation.TileBarItem();
+            this.txtTagID = new DevExpress.XtraEditors.SearchControl();
+            this.txtISBN = new DevExpress.XtraEditors.TextEdit();
             this.barCodeISBN2 = new DevExpress.XtraEditors.BarCodeControl();
             this.label29 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.chkAutoRead = new DevExpress.XtraEditors.CheckEdit();
             this.radioBookType = new DevExpress.XtraEditors.RadioGroup();
-            this.txtTagID = new DevExpress.XtraEditors.TextEdit();
+            this.txtISBNHidden = new DevExpress.XtraEditors.TextEdit();
             this.label31 = new System.Windows.Forms.Label();
+            this.chkAutoSave = new DevExpress.XtraEditors.CheckEdit();
             this.label30 = new System.Windows.Forms.Label();
             this.lueBookInfo = new DevExpress.XtraEditors.LookUpEdit();
-            this.btnSave = new DevExpress.XtraEditors.SimpleButton();
-            this.txtISBN = new DevExpress.XtraEditors.TextEdit();
-            this.chkAutoSave = new DevExpress.XtraEditors.CheckEdit();
-            this.txtISBNHidden = new DevExpress.XtraEditors.TextEdit();
-            this.buttonReadTags = new DevExpress.XtraEditors.SimpleButton();
-            this.chkAutoRead = new DevExpress.XtraEditors.CheckEdit();
-            this.label28 = new System.Windows.Forms.Label();
-            this.btnClear = new DevExpress.XtraEditors.SimpleButton();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
+            this.chkTopicalName = new DevExpress.XtraEditors.CheckedListBoxControl();
+            this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
+            this.txtISBNRO = new DevExpress.XtraEditors.TextEdit();
+            this.txtMaxAge = new DevExpress.XtraEditors.SpinEdit();
+            this.txtMinAge = new DevExpress.XtraEditors.SpinEdit();
             this.barCodeISBN = new DevExpress.XtraEditors.BarCodeControl();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.txtRating = new DevExpress.XtraEditors.RatingControl();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.txtBrief = new DevExpress.XtraEditors.MemoEdit();
+            this.txtImgurl = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.txtPrice = new DevExpress.XtraEditors.SpinEdit();
+            this.txtPress = new DevExpress.XtraEditors.TextEdit();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.txtCreateTime = new DevExpress.XtraEditors.TextEdit();
+            this.txtDescribe = new DevExpress.XtraEditors.MemoEdit();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.txtBookName = new DevExpress.XtraEditors.TextEdit();
-            this.txtPress = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.txtAuthor = new DevExpress.XtraEditors.TextEdit();
-            this.txtPublicate_date = new DevExpress.XtraEditors.TextEdit();
-            this.txtCreateTime = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
-            this.txtPrice = new DevExpress.XtraEditors.SpinEdit();
-            this.txtBrief = new DevExpress.XtraEditors.MemoEdit();
-            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
-            this.txtDescribe = new DevExpress.XtraEditors.MemoEdit();
             this.imageSlider1 = new DevExpress.XtraEditors.Controls.ImageSlider();
+            this.txtBookName = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.txtPublicate_date = new DevExpress.XtraEditors.DateEdit();
             this.tabControlISO15693TagOp.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -249,24 +271,34 @@ namespace RFIDStation
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.xtraTabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radioBookType.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
+            this.splitContainerControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
+            this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtTagID.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lueBookInfo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtISBN.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkAutoSave.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtISBNHidden.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkAutoRead.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radioBookType.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtISBNHidden.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkAutoSave.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueBookInfo.Properties)).BeginInit();
             this.xtraTabPage2.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtBookName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPress.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAuthor.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPublicate_date.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCreateTime.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPrice.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkTopicalName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtISBNRO.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMaxAge.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMinAge.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRating.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBrief.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtImgurl.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPrice.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPress.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCreateTime.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescribe.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAuthor.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageSlider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBookName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPublicate_date.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPublicate_date.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControlISO15693TagOp
@@ -1698,13 +1730,11 @@ namespace RFIDStation
             // 
             // groupControl1
             // 
-            this.groupControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupControl1.Controls.Add(this.grdRecordList);
-            this.groupControl1.Location = new System.Drawing.Point(0, 214);
+            this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupControl1.Location = new System.Drawing.Point(0, 0);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(872, 441);
+            this.groupControl1.Size = new System.Drawing.Size(559, 740);
             this.groupControl1.TabIndex = 2279;
             this.groupControl1.Text = "标签录入记录";
             // 
@@ -1717,7 +1747,7 @@ namespace RFIDStation
             this.grdRecordList.Name = "grdRecordList";
             this.grdRecordList.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemTextEdit1});
-            this.grdRecordList.Size = new System.Drawing.Size(868, 418);
+            this.grdRecordList.Size = new System.Drawing.Size(555, 717);
             this.grdRecordList.TabIndex = 1;
             this.grdRecordList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvRecordList});
@@ -1746,12 +1776,19 @@ namespace RFIDStation
             this.gridColumn4,
             this.gridColumn5});
             this.gvRecordList.GridControl = this.grdRecordList;
+            this.gvRecordList.GroupCount = 1;
+            this.gvRecordList.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Count, "book_name", null, "(小计{0}本)")});
             this.gvRecordList.Name = "gvRecordList";
+            this.gvRecordList.OptionsBehavior.AutoExpandAllGroups = true;
+            this.gvRecordList.OptionsFilter.ShowAllTableValuesInFilterPopup = true;
             this.gvRecordList.OptionsNavigation.AutoFocusNewRow = true;
             this.gvRecordList.OptionsSelection.MultiSelect = true;
+            this.gvRecordList.OptionsView.ShowAutoFilterRow = true;
             this.gvRecordList.OptionsView.ShowFooter = true;
-            this.gvRecordList.OptionsView.ShowGroupPanel = false;
             this.gvRecordList.RowHeight = 30;
+            this.gvRecordList.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn6, DevExpress.Data.ColumnSortOrder.Ascending)});
             this.gvRecordList.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.gvRecordList_CustomColumnDisplayText);
             // 
             // gridColumn1
@@ -1764,7 +1801,7 @@ namespace RFIDStation
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "tag_id", "当日记录数：{0}")});
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 0;
-            this.gridColumn1.Width = 240;
+            this.gridColumn1.Width = 187;
             // 
             // gridColumn2
             // 
@@ -1774,7 +1811,7 @@ namespace RFIDStation
             this.gridColumn2.OptionsColumn.AllowEdit = false;
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 1;
-            this.gridColumn2.Width = 167;
+            this.gridColumn2.Width = 130;
             // 
             // gridColumn6
             // 
@@ -1792,8 +1829,8 @@ namespace RFIDStation
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 3;
-            this.gridColumn3.Width = 110;
+            this.gridColumn3.VisibleIndex = 2;
+            this.gridColumn3.Width = 90;
             // 
             // gridColumn4
             // 
@@ -1805,8 +1842,8 @@ namespace RFIDStation
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.OptionsColumn.AllowEdit = false;
             this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 4;
-            this.gridColumn4.Width = 119;
+            this.gridColumn4.VisibleIndex = 3;
+            this.gridColumn4.Width = 112;
             // 
             // repositoryItemTextEdit1
             // 
@@ -1823,10 +1860,11 @@ namespace RFIDStation
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripTagSyncStatus});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 660);
+            this.toolStripTagSyncStatus,
+            this.toolStripStatusLabelEnv});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 746);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(876, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1125, 22);
             this.statusStrip1.TabIndex = 2281;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -1834,6 +1872,11 @@ namespace RFIDStation
             // 
             this.toolStripTagSyncStatus.Name = "toolStripTagSyncStatus";
             this.toolStripTagSyncStatus.Size = new System.Drawing.Size(0, 17);
+            // 
+            // toolStripStatusLabelEnv
+            // 
+            this.toolStripStatusLabelEnv.Name = "toolStripStatusLabelEnv";
+            this.toolStripStatusLabelEnv.Size = new System.Drawing.Size(0, 17);
             // 
             // xtraTabControl1
             // 
@@ -1843,7 +1886,7 @@ namespace RFIDStation
             this.xtraTabControl1.Location = new System.Drawing.Point(0, 0);
             this.xtraTabControl1.Name = "xtraTabControl1";
             this.xtraTabControl1.SelectedTabPage = this.xtraTabPage1;
-            this.xtraTabControl1.Size = new System.Drawing.Size(878, 684);
+            this.xtraTabControl1.Size = new System.Drawing.Size(1131, 797);
             this.xtraTabControl1.TabIndex = 2303;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1,
@@ -1851,25 +1894,177 @@ namespace RFIDStation
             // 
             // xtraTabPage1
             // 
-            this.xtraTabPage1.Controls.Add(this.barCodeISBN2);
-            this.xtraTabPage1.Controls.Add(this.label29);
-            this.xtraTabPage1.Controls.Add(this.groupControl1);
-            this.xtraTabPage1.Controls.Add(this.radioBookType);
-            this.xtraTabPage1.Controls.Add(this.txtTagID);
-            this.xtraTabPage1.Controls.Add(this.label31);
-            this.xtraTabPage1.Controls.Add(this.label30);
-            this.xtraTabPage1.Controls.Add(this.lueBookInfo);
-            this.xtraTabPage1.Controls.Add(this.btnSave);
-            this.xtraTabPage1.Controls.Add(this.txtISBN);
-            this.xtraTabPage1.Controls.Add(this.chkAutoSave);
-            this.xtraTabPage1.Controls.Add(this.txtISBNHidden);
-            this.xtraTabPage1.Controls.Add(this.buttonReadTags);
-            this.xtraTabPage1.Controls.Add(this.chkAutoRead);
-            this.xtraTabPage1.Controls.Add(this.label28);
-            this.xtraTabPage1.Controls.Add(this.btnClear);
+            this.xtraTabPage1.Controls.Add(this.splitContainerControl1);
+            this.xtraTabPage1.Controls.Add(this.statusStrip1);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(872, 655);
+            this.xtraTabPage1.Size = new System.Drawing.Size(1125, 768);
             this.xtraTabPage1.Text = "标签|图书信息录入区";
+            // 
+            // splitContainerControl1
+            // 
+            this.splitContainerControl1.Location = new System.Drawing.Point(3, 3);
+            this.splitContainerControl1.Name = "splitContainerControl1";
+            this.splitContainerControl1.Panel1.Controls.Add(this.groupControl2);
+            this.splitContainerControl1.Panel1.Text = "Panel1";
+            this.splitContainerControl1.Panel2.Controls.Add(this.groupControl1);
+            this.splitContainerControl1.Panel2.Text = "Panel2";
+            this.splitContainerControl1.Size = new System.Drawing.Size(1118, 740);
+            this.splitContainerControl1.SplitterPosition = 554;
+            this.splitContainerControl1.TabIndex = 2318;
+            this.splitContainerControl1.Text = "splitContainerControl1";
+            // 
+            // groupControl2
+            // 
+            this.groupControl2.Controls.Add(this.txtMessage);
+            this.groupControl2.Controls.Add(this.tileBar1);
+            this.groupControl2.Controls.Add(this.txtTagID);
+            this.groupControl2.Controls.Add(this.txtISBN);
+            this.groupControl2.Controls.Add(this.barCodeISBN2);
+            this.groupControl2.Controls.Add(this.label29);
+            this.groupControl2.Controls.Add(this.label28);
+            this.groupControl2.Controls.Add(this.chkAutoRead);
+            this.groupControl2.Controls.Add(this.radioBookType);
+            this.groupControl2.Controls.Add(this.txtISBNHidden);
+            this.groupControl2.Controls.Add(this.label31);
+            this.groupControl2.Controls.Add(this.chkAutoSave);
+            this.groupControl2.Controls.Add(this.label30);
+            this.groupControl2.Controls.Add(this.lueBookInfo);
+            this.groupControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupControl2.Location = new System.Drawing.Point(0, 0);
+            this.groupControl2.Name = "groupControl2";
+            this.groupControl2.Size = new System.Drawing.Size(554, 740);
+            this.groupControl2.TabIndex = 2318;
+            this.groupControl2.Text = "图书标签绑定";
+            // 
+            // txtMessage
+            // 
+            this.txtMessage.Location = new System.Drawing.Point(5, 531);
+            this.txtMessage.Name = "txtMessage";
+            this.txtMessage.Size = new System.Drawing.Size(544, 203);
+            this.txtMessage.TabIndex = 2321;
+            this.txtMessage.Text = "";
+            // 
+            // tileBar1
+            // 
+            this.tileBar1.AllowDrag = false;
+            this.tileBar1.AllowSelectedItem = true;
+            this.tileBar1.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
+            this.tileBar1.Groups.Add(this.tileBarGroup2);
+            this.tileBar1.Groups.Add(this.tileBarGroup1);
+            this.tileBar1.ItemPadding = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.tileBar1.Location = new System.Drawing.Point(5, 326);
+            this.tileBar1.MaxId = 6;
+            this.tileBar1.Name = "tileBar1";
+            this.tileBar1.Padding = new System.Windows.Forms.Padding(15, 7, 15, 7);
+            this.tileBar1.ScrollMode = DevExpress.XtraEditors.TileControlScrollMode.ScrollButtons;
+            this.tileBar1.SelectionColor = System.Drawing.Color.OliveDrab;
+            this.tileBar1.ShowGroupText = false;
+            this.tileBar1.Size = new System.Drawing.Size(545, 130);
+            this.tileBar1.TabIndex = 2320;
+            this.tileBar1.Text = "tileBar1";
+            // 
+            // tileBarGroup2
+            // 
+            this.tileBarGroup2.Items.Add(this.buttonReadTags);
+            this.tileBarGroup2.Items.Add(this.btn_ReadTagData);
+            this.tileBarGroup2.Items.Add(this.btnClear);
+            this.tileBarGroup2.Name = "tileBarGroup2";
+            // 
+            // buttonReadTags
+            // 
+            this.buttonReadTags.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
+            tileItemElement5.Image = ((System.Drawing.Image)(resources.GetObject("tileItemElement5.Image")));
+            tileItemElement5.Text = "读取标签";
+            this.buttonReadTags.Elements.Add(tileItemElement5);
+            this.buttonReadTags.Id = 0;
+            this.buttonReadTags.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
+            this.buttonReadTags.Name = "buttonReadTags";
+            this.buttonReadTags.Visible = false;
+            this.buttonReadTags.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.buttonReadTags_Click);
+            // 
+            // btn_ReadTagData
+            // 
+            this.btn_ReadTagData.AppearanceItem.Normal.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btn_ReadTagData.AppearanceItem.Normal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.btn_ReadTagData.AppearanceItem.Normal.Options.UseBackColor = true;
+            this.btn_ReadTagData.AppearanceItem.Normal.Options.UseFont = true;
+            this.btn_ReadTagData.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
+            tileItemElement6.Image = ((System.Drawing.Image)(resources.GetObject("tileItemElement6.Image")));
+            tileItemElement6.Text = "读取标签数据";
+            this.btn_ReadTagData.Elements.Add(tileItemElement6);
+            this.btn_ReadTagData.Id = 5;
+            this.btn_ReadTagData.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
+            this.btn_ReadTagData.Name = "btn_ReadTagData";
+            this.btn_ReadTagData.ShowItemShadow = DevExpress.Utils.DefaultBoolean.True;
+            this.btn_ReadTagData.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.btn_ReadTagData_ItemClick);
+            // 
+            // btnClear
+            // 
+            this.btnClear.AppearanceItem.Normal.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnClear.AppearanceItem.Normal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.btnClear.AppearanceItem.Normal.Options.UseBackColor = true;
+            this.btnClear.AppearanceItem.Normal.Options.UseFont = true;
+            this.btnClear.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
+            tileItemElement7.Image = ((System.Drawing.Image)(resources.GetObject("tileItemElement7.Image")));
+            tileItemElement7.Text = "清空信息";
+            this.btnClear.Elements.Add(tileItemElement7);
+            this.btnClear.Id = 3;
+            this.btnClear.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
+            this.btnClear.Name = "btnClear";
+            this.btnClear.ShowItemShadow = DevExpress.Utils.DefaultBoolean.True;
+            this.btnClear.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.btnClear_Click);
+            // 
+            // tileBarGroup1
+            // 
+            this.tileBarGroup1.Items.Add(this.btnSave);
+            this.tileBarGroup1.Name = "tileBarGroup1";
+            // 
+            // btnSave
+            // 
+            this.btnSave.AppearanceItem.Normal.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnSave.AppearanceItem.Normal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.btnSave.AppearanceItem.Normal.Options.UseBackColor = true;
+            this.btnSave.AppearanceItem.Normal.Options.UseFont = true;
+            this.btnSave.Checked = true;
+            this.btnSave.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
+            tileItemElement8.Image = ((System.Drawing.Image)(resources.GetObject("tileItemElement8.Image")));
+            tileItemElement8.Text = "保存录入";
+            this.btnSave.Elements.Add(tileItemElement8);
+            this.btnSave.Id = 2;
+            this.btnSave.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
+            this.btnSave.Name = "btnSave";
+            this.btnSave.ShowItemShadow = DevExpress.Utils.DefaultBoolean.True;
+            this.btnSave.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.btnSave_ItemClick);
+            // 
+            // txtTagID
+            // 
+            this.txtTagID.Location = new System.Drawing.Point(96, 41);
+            this.txtTagID.Name = "txtTagID";
+            this.txtTagID.Properties.AllowAutoApply = false;
+            this.txtTagID.Properties.AutoHeight = false;
+            this.txtTagID.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Repository.SearchButton("btn_search_tag", 35, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, false, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
+            this.txtTagID.Properties.NullValuePrompt = "放入标签到读卡器自动读取标签...";
+            this.txtTagID.Properties.ShowClearButton = false;
+            this.txtTagID.Properties.ShowDefaultButtonsMode = DevExpress.XtraEditors.Repository.ShowDefaultButtonsMode.Always;
+            this.txtTagID.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.txtTagID.Properties.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.txtTagID_Properties_ButtonClick);
+            this.txtTagID.Size = new System.Drawing.Size(423, 32);
+            this.txtTagID.TabIndex = 2319;
+            this.txtTagID.EditValueChanged += new System.EventHandler(this.txtTagID_EditValueChanged);
+            // 
+            // txtISBN
+            // 
+            this.txtISBN.EditValue = "";
+            this.txtISBN.Location = new System.Drawing.Point(96, 91);
+            this.txtISBN.Name = "txtISBN";
+            this.txtISBN.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
+            this.txtISBN.Properties.Appearance.Options.UseBackColor = true;
+            this.txtISBN.Properties.AutoHeight = false;
+            this.txtISBN.Properties.NullText = "在此区域扫描图书ISBN号码";
+            this.txtISBN.Properties.ReadOnly = true;
+            this.txtISBN.Size = new System.Drawing.Size(423, 36);
+            this.txtISBN.TabIndex = 2309;
             // 
             // barCodeISBN2
             // 
@@ -1879,60 +2074,91 @@ namespace RFIDStation
             this.barCodeISBN2.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.barCodeISBN2.HorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.barCodeISBN2.HorizontalTextAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.barCodeISBN2.Location = new System.Drawing.Point(575, 18);
+            this.barCodeISBN2.Location = new System.Drawing.Point(96, 145);
             this.barCodeISBN2.Name = "barCodeISBN2";
             this.barCodeISBN2.Padding = new System.Windows.Forms.Padding(10, 2, 10, 0);
-            this.barCodeISBN2.Size = new System.Drawing.Size(294, 73);
-            code39Generator1.WideNarrowRatio = 3F;
-            this.barCodeISBN2.Symbology = code39Generator1;
+            this.barCodeISBN2.Size = new System.Drawing.Size(423, 44);
+            codabarGenerator3.WideNarrowRatio = 2F;
+            this.barCodeISBN2.Symbology = codabarGenerator3;
             this.barCodeISBN2.TabIndex = 2317;
             // 
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(21, 99);
+            this.label29.Location = new System.Drawing.Point(2, 278);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(91, 14);
             this.label29.TabIndex = 2316;
             this.label29.Text = "对应图书类型：";
             // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(13, 49);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(80, 14);
+            this.label28.TabIndex = 2307;
+            this.label28.Text = "RFID标签ID：";
+            // 
+            // chkAutoRead
+            // 
+            this.chkAutoRead.EditValue = true;
+            this.chkAutoRead.Location = new System.Drawing.Point(286, 476);
+            this.chkAutoRead.Name = "chkAutoRead";
+            this.chkAutoRead.Properties.Caption = "自动读取标签";
+            this.chkAutoRead.Size = new System.Drawing.Size(113, 19);
+            this.chkAutoRead.TabIndex = 2311;
+            this.chkAutoRead.Visible = false;
+            this.chkAutoRead.CheckedChanged += new System.EventHandler(this.chkAutoRead_CheckedChanged);
+            // 
             // radioBookType
             // 
             this.radioBookType.EditValue = ((short)(1));
-            this.radioBookType.Location = new System.Drawing.Point(118, 97);
+            this.radioBookType.Location = new System.Drawing.Point(96, 271);
             this.radioBookType.Name = "radioBookType";
             this.radioBookType.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.radioBookType.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
             new DevExpress.XtraEditors.Controls.RadioGroupItem(((short)(1)), "单本图书"),
             new DevExpress.XtraEditors.Controls.RadioGroupItem(((short)(2)), "相同ISBN丛书")});
-            this.radioBookType.Size = new System.Drawing.Size(724, 30);
+            this.radioBookType.Size = new System.Drawing.Size(422, 30);
             this.radioBookType.TabIndex = 2313;
             // 
-            // txtTagID
+            // txtISBNHidden
             // 
-            this.txtTagID.EditValue = "";
-            this.txtTagID.Location = new System.Drawing.Point(119, 21);
-            this.txtTagID.Name = "txtTagID";
-            this.txtTagID.Properties.AutoHeight = false;
-            this.txtTagID.Properties.NullText = "放入标签到读卡器自动读取标签";
-            this.txtTagID.Properties.ReadOnly = true;
-            this.txtTagID.Size = new System.Drawing.Size(450, 28);
-            this.txtTagID.TabIndex = 2308;
-            this.txtTagID.EditValueChanged += new System.EventHandler(this.txtTagID_EditValueChanged);
+            this.txtISBNHidden.EditValue = "";
+            this.txtISBNHidden.Location = new System.Drawing.Point(96, 98);
+            this.txtISBNHidden.Name = "txtISBNHidden";
+            this.txtISBNHidden.Properties.AutoHeight = false;
+            this.txtISBNHidden.Properties.NullText = "在此区域扫描图书ISBN号码";
+            this.txtISBNHidden.Size = new System.Drawing.Size(423, 28);
+            this.txtISBNHidden.TabIndex = 2312;
+            this.txtISBNHidden.EditValueChanged += new System.EventHandler(this.txtISBNHidden_TextChanged);
+            this.txtISBNHidden.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtISBN_KeyPress);
             // 
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(45, 137);
+            this.label31.Location = new System.Drawing.Point(26, 222);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(67, 14);
             this.label31.TabIndex = 2314;
             this.label31.Text = "图书名称：";
             // 
+            // chkAutoSave
+            // 
+            this.chkAutoSave.EditValue = true;
+            this.chkAutoSave.Location = new System.Drawing.Point(144, 475);
+            this.chkAutoSave.Name = "chkAutoSave";
+            this.chkAutoSave.Properties.Caption = "扫描ISBN后自动录入";
+            this.chkAutoSave.Size = new System.Drawing.Size(145, 19);
+            this.chkAutoSave.TabIndex = 2305;
+            this.chkAutoSave.Visible = false;
+            this.chkAutoSave.CheckedChanged += new System.EventHandler(this.chkAutoSave_CheckedChanged);
+            // 
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(54, 67);
+            this.label30.Location = new System.Drawing.Point(36, 102);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(57, 14);
             this.label30.TabIndex = 2304;
@@ -1940,7 +2166,7 @@ namespace RFIDStation
             // 
             // lueBookInfo
             // 
-            this.lueBookInfo.Location = new System.Drawing.Point(118, 130);
+            this.lueBookInfo.Location = new System.Drawing.Point(97, 215);
             this.lueBookInfo.Name = "lueBookInfo";
             this.lueBookInfo.Properties.AutoHeight = false;
             this.lueBookInfo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -1949,100 +2175,123 @@ namespace RFIDStation
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("isbn_no", 50, "ISBN"),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("book_name", 150, "图书名称")});
             this.lueBookInfo.Properties.NullText = "";
-            this.lueBookInfo.Size = new System.Drawing.Size(751, 28);
+            this.lueBookInfo.Size = new System.Drawing.Size(422, 31);
             this.lueBookInfo.TabIndex = 2315;
-            // 
-            // btnSave
-            // 
-            this.btnSave.Location = new System.Drawing.Point(612, 176);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 2303;
-            this.btnSave.Text = "录  入";
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // txtISBN
-            // 
-            this.txtISBN.EditValue = "";
-            this.txtISBN.Location = new System.Drawing.Point(118, 51);
-            this.txtISBN.Name = "txtISBN";
-            this.txtISBN.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
-            this.txtISBN.Properties.Appearance.Options.UseBackColor = true;
-            this.txtISBN.Properties.AutoHeight = false;
-            this.txtISBN.Properties.NullText = "在此区域扫描图书ISBN号码";
-            this.txtISBN.Properties.ReadOnly = true;
-            this.txtISBN.Size = new System.Drawing.Size(451, 36);
-            this.txtISBN.TabIndex = 2309;
-            // 
-            // chkAutoSave
-            // 
-            this.chkAutoSave.EditValue = true;
-            this.chkAutoSave.Location = new System.Drawing.Point(317, 180);
-            this.chkAutoSave.Name = "chkAutoSave";
-            this.chkAutoSave.Properties.Caption = "扫描ISBN后自动录入";
-            this.chkAutoSave.Size = new System.Drawing.Size(145, 19);
-            this.chkAutoSave.TabIndex = 2305;
-            this.chkAutoSave.Visible = false;
-            this.chkAutoSave.CheckedChanged += new System.EventHandler(this.chkAutoSave_CheckedChanged);
-            // 
-            // txtISBNHidden
-            // 
-            this.txtISBNHidden.EditValue = "";
-            this.txtISBNHidden.Location = new System.Drawing.Point(118, 58);
-            this.txtISBNHidden.Name = "txtISBNHidden";
-            this.txtISBNHidden.Properties.AutoHeight = false;
-            this.txtISBNHidden.Properties.NullText = "在此区域扫描图书ISBN号码";
-            this.txtISBNHidden.Size = new System.Drawing.Size(451, 28);
-            this.txtISBNHidden.TabIndex = 2312;
-            this.txtISBNHidden.EditValueChanged += new System.EventHandler(this.txtISBNHidden_TextChanged);
-            this.txtISBNHidden.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtISBN_KeyPress);
-            // 
-            // buttonReadTags
-            // 
-            this.buttonReadTags.Location = new System.Drawing.Point(794, 175);
-            this.buttonReadTags.Name = "buttonReadTags";
-            this.buttonReadTags.Size = new System.Drawing.Size(75, 23);
-            this.buttonReadTags.TabIndex = 2306;
-            this.buttonReadTags.Text = "读取标签";
-            this.buttonReadTags.Visible = false;
-            this.buttonReadTags.Click += new System.EventHandler(this.buttonReadTags_Click);
-            // 
-            // chkAutoRead
-            // 
-            this.chkAutoRead.EditValue = true;
-            this.chkAutoRead.Location = new System.Drawing.Point(480, 180);
-            this.chkAutoRead.Name = "chkAutoRead";
-            this.chkAutoRead.Properties.Caption = "自动读取标签";
-            this.chkAutoRead.Size = new System.Drawing.Size(113, 19);
-            this.chkAutoRead.TabIndex = 2311;
-            this.chkAutoRead.Visible = false;
-            this.chkAutoRead.CheckedChanged += new System.EventHandler(this.chkAutoRead_CheckedChanged);
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(32, 29);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(80, 14);
-            this.label28.TabIndex = 2307;
-            this.label28.Text = "RFID标签ID：";
-            // 
-            // btnClear
-            // 
-            this.btnClear.Location = new System.Drawing.Point(704, 175);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(75, 23);
-            this.btnClear.TabIndex = 2310;
-            this.btnClear.Text = "清   空";
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // xtraTabPage2
             // 
+            this.xtraTabPage2.Controls.Add(this.chkTopicalName);
+            this.xtraTabPage2.Controls.Add(this.labelControl14);
+            this.xtraTabPage2.Controls.Add(this.labelControl13);
+            this.xtraTabPage2.Controls.Add(this.txtISBNRO);
+            this.xtraTabPage2.Controls.Add(this.txtMaxAge);
+            this.xtraTabPage2.Controls.Add(this.txtMinAge);
             this.xtraTabPage2.Controls.Add(this.barCodeISBN);
-            this.xtraTabPage2.Controls.Add(this.tableLayoutPanel1);
+            this.xtraTabPage2.Controls.Add(this.txtRating);
+            this.xtraTabPage2.Controls.Add(this.labelControl1);
+            this.xtraTabPage2.Controls.Add(this.txtBrief);
+            this.xtraTabPage2.Controls.Add(this.txtImgurl);
+            this.xtraTabPage2.Controls.Add(this.labelControl10);
+            this.xtraTabPage2.Controls.Add(this.labelControl2);
+            this.xtraTabPage2.Controls.Add(this.txtPrice);
+            this.xtraTabPage2.Controls.Add(this.txtPress);
+            this.xtraTabPage2.Controls.Add(this.labelControl9);
+            this.xtraTabPage2.Controls.Add(this.labelControl3);
+            this.xtraTabPage2.Controls.Add(this.txtCreateTime);
+            this.xtraTabPage2.Controls.Add(this.txtDescribe);
+            this.xtraTabPage2.Controls.Add(this.labelControl8);
+            this.xtraTabPage2.Controls.Add(this.labelControl4);
+            this.xtraTabPage2.Controls.Add(this.txtAuthor);
+            this.xtraTabPage2.Controls.Add(this.labelControl7);
+            this.xtraTabPage2.Controls.Add(this.imageSlider1);
+            this.xtraTabPage2.Controls.Add(this.txtBookName);
+            this.xtraTabPage2.Controls.Add(this.labelControl6);
+            this.xtraTabPage2.Controls.Add(this.txtPublicate_date);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(872, 655);
+            this.xtraTabPage2.Size = new System.Drawing.Size(1125, 768);
             this.xtraTabPage2.Text = "图书|标签信息";
+            // 
+            // chkTopicalName
+            // 
+            this.chkTopicalName.ColumnWidth = 90;
+            this.chkTopicalName.Location = new System.Drawing.Point(352, 296);
+            this.chkTopicalName.MultiColumn = true;
+            this.chkTopicalName.Name = "chkTopicalName";
+            this.chkTopicalName.Size = new System.Drawing.Size(739, 68);
+            this.chkTopicalName.TabIndex = 71;
+            // 
+            // labelControl14
+            // 
+            this.labelControl14.Location = new System.Drawing.Point(298, 304);
+            this.labelControl14.Margin = new System.Windows.Forms.Padding(3, 7, 3, 3);
+            this.labelControl14.Name = "labelControl14";
+            this.labelControl14.Size = new System.Drawing.Size(48, 14);
+            this.labelControl14.TabIndex = 70;
+            this.labelControl14.Text = "类别标签";
+            // 
+            // labelControl13
+            // 
+            this.labelControl13.Location = new System.Drawing.Point(298, 99);
+            this.labelControl13.Margin = new System.Windows.Forms.Padding(3, 7, 3, 3);
+            this.labelControl13.Name = "labelControl13";
+            this.labelControl13.Size = new System.Drawing.Size(26, 14);
+            this.labelControl13.TabIndex = 69;
+            this.labelControl13.Text = "ISBN";
+            // 
+            // txtISBNRO
+            // 
+            this.txtISBNRO.Location = new System.Drawing.Point(352, 91);
+            this.txtISBNRO.Name = "txtISBNRO";
+            this.txtISBNRO.Properties.AutoHeight = false;
+            this.txtISBNRO.Properties.ReadOnly = true;
+            this.txtISBNRO.Size = new System.Drawing.Size(739, 30);
+            this.txtISBNRO.TabIndex = 68;
+            // 
+            // txtMaxAge
+            // 
+            this.txtMaxAge.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtMaxAge.Location = new System.Drawing.Point(960, 255);
+            this.txtMaxAge.Name = "txtMaxAge";
+            this.txtMaxAge.Properties.AutoHeight = false;
+            this.txtMaxAge.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtMaxAge.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.txtMaxAge.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
+            this.txtMaxAge.Properties.MaxValue = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.txtMaxAge.Properties.SpinStyle = DevExpress.XtraEditors.Controls.SpinStyles.Horizontal;
+            this.txtMaxAge.Size = new System.Drawing.Size(131, 30);
+            this.txtMaxAge.TabIndex = 67;
+            // 
+            // txtMinAge
+            // 
+            this.txtMinAge.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtMinAge.Location = new System.Drawing.Point(685, 257);
+            this.txtMinAge.Name = "txtMinAge";
+            this.txtMinAge.Properties.AutoHeight = false;
+            this.txtMinAge.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtMinAge.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.txtMinAge.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
+            this.txtMinAge.Properties.MaxValue = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.txtMinAge.Properties.SpinStyle = DevExpress.XtraEditors.Controls.SpinStyles.Horizontal;
+            this.txtMinAge.Size = new System.Drawing.Size(167, 30);
+            this.txtMinAge.TabIndex = 66;
             // 
             // barCodeISBN
             // 
@@ -2052,185 +2301,78 @@ namespace RFIDStation
             this.barCodeISBN.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.barCodeISBN.HorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.barCodeISBN.HorizontalTextAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.barCodeISBN.Location = new System.Drawing.Point(148, 27);
+            this.barCodeISBN.Location = new System.Drawing.Point(29, 13);
             this.barCodeISBN.Name = "barCodeISBN";
             this.barCodeISBN.Padding = new System.Windows.Forms.Padding(10, 2, 10, 0);
-            this.barCodeISBN.Size = new System.Drawing.Size(619, 60);
-            code39ExtendedGenerator1.WideNarrowRatio = 3F;
-            this.barCodeISBN.Symbology = code39ExtendedGenerator1;
-            this.barCodeISBN.TabIndex = 3;
+            this.barCodeISBN.Size = new System.Drawing.Size(1062, 63);
+            codabarGenerator4.WideNarrowRatio = 2F;
+            this.barCodeISBN.Symbology = codabarGenerator4;
+            this.barCodeISBN.TabIndex = 47;
             // 
-            // tableLayoutPanel1
+            // txtRating
             // 
-            this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.82619F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 74.17381F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 103F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 408F));
-            this.tableLayoutPanel1.Controls.Add(this.labelControl9, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.labelControl8, 2, 2);
-            this.tableLayoutPanel1.Controls.Add(this.labelControl4, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.labelControl3, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.labelControl2, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.txtBookName, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.txtPress, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.labelControl1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.txtAuthor, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.txtPublicate_date, 3, 1);
-            this.tableLayoutPanel1.Controls.Add(this.txtCreateTime, 3, 2);
-            this.tableLayoutPanel1.Controls.Add(this.labelControl6, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.labelControl7, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.txtPrice, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.txtBrief, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.labelControl5, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.txtDescribe, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.imageSlider1, 1, 5);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 116);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 6;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 159F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 143F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(873, 536);
-            this.tableLayoutPanel1.TabIndex = 2;
-            // 
-            // labelControl9
-            // 
-            this.labelControl9.Dock = System.Windows.Forms.DockStyle.Right;
-            this.labelControl9.Location = new System.Drawing.Point(66, 374);
-            this.labelControl9.Margin = new System.Windows.Forms.Padding(3, 50, 3, 3);
-            this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(24, 14);
-            this.labelControl9.TabIndex = 21;
-            this.labelControl9.Text = "图片";
-            // 
-            // labelControl8
-            // 
-            this.labelControl8.Dock = System.Windows.Forms.DockStyle.Right;
-            this.labelControl8.Location = new System.Drawing.Point(413, 67);
-            this.labelControl8.Margin = new System.Windows.Forms.Padding(3, 7, 3, 3);
-            this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(48, 14);
-            this.labelControl8.TabIndex = 19;
-            this.labelControl8.Text = "创建时间";
-            // 
-            // labelControl4
-            // 
-            this.labelControl4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.labelControl4.Location = new System.Drawing.Point(66, 120);
-            this.labelControl4.Margin = new System.Windows.Forms.Padding(3, 30, 3, 3);
-            this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(24, 14);
-            this.labelControl4.TabIndex = 8;
-            this.labelControl4.Text = "简介";
-            // 
-            // labelControl3
-            // 
-            this.labelControl3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.labelControl3.Location = new System.Drawing.Point(66, 67);
-            this.labelControl3.Margin = new System.Windows.Forms.Padding(3, 7, 3, 3);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(24, 14);
-            this.labelControl3.TabIndex = 7;
-            this.labelControl3.Text = "价格";
-            // 
-            // labelControl2
-            // 
-            this.labelControl2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.labelControl2.Location = new System.Drawing.Point(54, 37);
-            this.labelControl2.Margin = new System.Windows.Forms.Padding(3, 7, 3, 3);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(36, 14);
-            this.labelControl2.TabIndex = 6;
-            this.labelControl2.Text = "出版社";
-            // 
-            // txtBookName
-            // 
-            this.txtBookName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtBookName.Location = new System.Drawing.Point(96, 3);
-            this.txtBookName.Name = "txtBookName";
-            this.txtBookName.Properties.AutoHeight = false;
-            this.txtBookName.Size = new System.Drawing.Size(262, 24);
-            this.txtBookName.TabIndex = 1;
-            // 
-            // txtPress
-            // 
-            this.txtPress.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtPress.Location = new System.Drawing.Point(96, 33);
-            this.txtPress.Name = "txtPress";
-            this.txtPress.Properties.AutoHeight = false;
-            this.txtPress.Size = new System.Drawing.Size(262, 24);
-            this.txtPress.TabIndex = 2;
+            this.txtRating.EditValue = 3;
+            this.txtRating.Location = new System.Drawing.Point(86, 111);
+            this.txtRating.Name = "txtRating";
+            this.txtRating.Properties.Padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this.txtRating.Rating = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.txtRating.Size = new System.Drawing.Size(87, 16);
+            this.txtRating.TabIndex = 65;
             // 
             // labelControl1
             // 
-            this.labelControl1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.labelControl1.Location = new System.Drawing.Point(42, 7);
+            this.labelControl1.Location = new System.Drawing.Point(298, 140);
             this.labelControl1.Margin = new System.Windows.Forms.Padding(3, 7, 3, 3);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(48, 14);
-            this.labelControl1.TabIndex = 5;
+            this.labelControl1.TabIndex = 48;
             this.labelControl1.Text = "图书名称";
             // 
-            // txtAuthor
+            // txtBrief
             // 
-            this.txtAuthor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtAuthor.Location = new System.Drawing.Point(467, 3);
-            this.txtAuthor.Name = "txtAuthor";
-            this.txtAuthor.Properties.AutoHeight = false;
-            this.txtAuthor.Size = new System.Drawing.Size(403, 24);
-            this.txtAuthor.TabIndex = 10;
+            this.txtBrief.Location = new System.Drawing.Point(97, 457);
+            this.txtBrief.Name = "txtBrief";
+            this.txtBrief.Size = new System.Drawing.Size(994, 69);
+            this.txtBrief.TabIndex = 53;
             // 
-            // txtPublicate_date
+            // txtImgurl
             // 
-            this.txtPublicate_date.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtPublicate_date.Location = new System.Drawing.Point(467, 33);
-            this.txtPublicate_date.Name = "txtPublicate_date";
-            this.txtPublicate_date.Properties.AutoHeight = false;
-            this.txtPublicate_date.Size = new System.Drawing.Size(403, 24);
-            this.txtPublicate_date.TabIndex = 11;
+            this.txtImgurl.Location = new System.Drawing.Point(352, 373);
+            this.txtImgurl.Name = "txtImgurl";
+            this.txtImgurl.Properties.AutoHeight = false;
+            this.txtImgurl.Size = new System.Drawing.Size(739, 30);
+            this.txtImgurl.TabIndex = 56;
             // 
-            // txtCreateTime
+            // labelControl10
             // 
-            this.txtCreateTime.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtCreateTime.Location = new System.Drawing.Point(467, 63);
-            this.txtCreateTime.Name = "txtCreateTime";
-            this.txtCreateTime.Properties.AutoHeight = false;
-            this.txtCreateTime.Size = new System.Drawing.Size(403, 24);
-            this.txtCreateTime.TabIndex = 12;
+            this.labelControl10.Location = new System.Drawing.Point(29, 623);
+            this.labelControl10.Margin = new System.Windows.Forms.Padding(3, 7, 3, 3);
+            this.labelControl10.Name = "labelControl10";
+            this.labelControl10.Size = new System.Drawing.Size(24, 14);
+            this.labelControl10.TabIndex = 64;
+            this.labelControl10.Text = "详情";
             // 
-            // labelControl6
+            // labelControl2
             // 
-            this.labelControl6.Dock = System.Windows.Forms.DockStyle.Right;
-            this.labelControl6.Location = new System.Drawing.Point(437, 7);
-            this.labelControl6.Margin = new System.Windows.Forms.Padding(3, 7, 3, 3);
-            this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(24, 14);
-            this.labelControl6.TabIndex = 14;
-            this.labelControl6.Text = "作者";
-            // 
-            // labelControl7
-            // 
-            this.labelControl7.Dock = System.Windows.Forms.DockStyle.Right;
-            this.labelControl7.Location = new System.Drawing.Point(413, 37);
-            this.labelControl7.Margin = new System.Windows.Forms.Padding(3, 7, 3, 3);
-            this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(48, 14);
-            this.labelControl7.TabIndex = 15;
-            this.labelControl7.Text = "出版日期";
+            this.labelControl2.Location = new System.Drawing.Point(105, 89);
+            this.labelControl2.Margin = new System.Windows.Forms.Padding(3, 7, 3, 3);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(48, 14);
+            this.labelControl2.TabIndex = 57;
+            this.labelControl2.Text = "图书封面";
             // 
             // txtPrice
             // 
-            this.txtPrice.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtPrice.EditValue = new decimal(new int[] {
             0,
             0,
             0,
             0});
-            this.txtPrice.Location = new System.Drawing.Point(96, 63);
+            this.txtPrice.Location = new System.Drawing.Point(352, 255);
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Properties.AutoHeight = false;
             this.txtPrice.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -2241,64 +2383,144 @@ namespace RFIDStation
             0,
             0,
             65536});
-            this.txtPrice.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
+            this.txtPrice.Properties.Mask.EditMask = "n";
             this.txtPrice.Properties.MaxValue = new decimal(new int[] {
             9999,
             0,
             0,
             0});
             this.txtPrice.Properties.SpinStyle = DevExpress.XtraEditors.Controls.SpinStyles.Horizontal;
-            this.txtPrice.Size = new System.Drawing.Size(262, 24);
-            this.txtPrice.TabIndex = 3;
+            this.txtPrice.Size = new System.Drawing.Size(249, 30);
+            this.txtPrice.TabIndex = 46;
             // 
-            // txtBrief
+            // txtPress
             // 
-            this.tableLayoutPanel1.SetColumnSpan(this.txtBrief, 3);
-            this.txtBrief.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtBrief.Location = new System.Drawing.Point(96, 93);
-            this.txtBrief.Name = "txtBrief";
-            this.txtBrief.Size = new System.Drawing.Size(774, 69);
-            this.txtBrief.TabIndex = 18;
+            this.txtPress.Location = new System.Drawing.Point(352, 214);
+            this.txtPress.Name = "txtPress";
+            this.txtPress.Properties.AutoHeight = false;
+            this.txtPress.Size = new System.Drawing.Size(249, 30);
+            this.txtPress.TabIndex = 45;
             // 
-            // labelControl5
+            // labelControl9
             // 
-            this.labelControl5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.labelControl5.Location = new System.Drawing.Point(66, 215);
-            this.labelControl5.Margin = new System.Windows.Forms.Padding(3, 50, 3, 3);
-            this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(24, 14);
-            this.labelControl5.TabIndex = 9;
-            this.labelControl5.Text = "描述";
+            this.labelControl9.Location = new System.Drawing.Point(29, 490);
+            this.labelControl9.Margin = new System.Windows.Forms.Padding(3, 7, 3, 3);
+            this.labelControl9.Name = "labelControl9";
+            this.labelControl9.Size = new System.Drawing.Size(24, 14);
+            this.labelControl9.TabIndex = 63;
+            this.labelControl9.Text = "简介";
+            // 
+            // labelControl3
+            // 
+            this.labelControl3.Location = new System.Drawing.Point(298, 181);
+            this.labelControl3.Margin = new System.Windows.Forms.Padding(3, 7, 3, 3);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(24, 14);
+            this.labelControl3.TabIndex = 58;
+            this.labelControl3.Text = "作者";
+            // 
+            // txtCreateTime
+            // 
+            this.txtCreateTime.Location = new System.Drawing.Point(352, 414);
+            this.txtCreateTime.Name = "txtCreateTime";
+            this.txtCreateTime.Properties.AutoHeight = false;
+            this.txtCreateTime.Properties.ReadOnly = true;
+            this.txtCreateTime.Size = new System.Drawing.Size(739, 30);
+            this.txtCreateTime.TabIndex = 52;
             // 
             // txtDescribe
             // 
-            this.tableLayoutPanel1.SetColumnSpan(this.txtDescribe, 3);
-            this.txtDescribe.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtDescribe.Location = new System.Drawing.Point(96, 168);
+            this.txtDescribe.Location = new System.Drawing.Point(97, 537);
             this.txtDescribe.Name = "txtDescribe";
-            this.txtDescribe.Size = new System.Drawing.Size(774, 153);
-            this.txtDescribe.TabIndex = 20;
+            this.txtDescribe.Size = new System.Drawing.Size(994, 165);
+            this.txtDescribe.TabIndex = 54;
+            // 
+            // labelControl8
+            // 
+            this.labelControl8.Location = new System.Drawing.Point(298, 422);
+            this.labelControl8.Margin = new System.Windows.Forms.Padding(3, 7, 3, 3);
+            this.labelControl8.Name = "labelControl8";
+            this.labelControl8.Size = new System.Drawing.Size(48, 14);
+            this.labelControl8.TabIndex = 62;
+            this.labelControl8.Text = "创建日期";
+            // 
+            // labelControl4
+            // 
+            this.labelControl4.Location = new System.Drawing.Point(298, 222);
+            this.labelControl4.Margin = new System.Windows.Forms.Padding(3, 7, 3, 3);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(36, 14);
+            this.labelControl4.TabIndex = 59;
+            this.labelControl4.Text = "出版社";
+            // 
+            // txtAuthor
+            // 
+            this.txtAuthor.Location = new System.Drawing.Point(352, 173);
+            this.txtAuthor.Name = "txtAuthor";
+            this.txtAuthor.Properties.AutoHeight = false;
+            this.txtAuthor.Size = new System.Drawing.Size(739, 30);
+            this.txtAuthor.TabIndex = 50;
+            // 
+            // labelControl7
+            // 
+            this.labelControl7.Location = new System.Drawing.Point(298, 381);
+            this.labelControl7.Margin = new System.Windows.Forms.Padding(3, 7, 3, 3);
+            this.labelControl7.Name = "labelControl7";
+            this.labelControl7.Size = new System.Drawing.Size(45, 14);
+            this.labelControl7.TabIndex = 61;
+            this.labelControl7.Text = "封面URL";
             // 
             // imageSlider1
             // 
-            this.tableLayoutPanel1.SetColumnSpan(this.imageSlider1, 3);
             this.imageSlider1.CurrentImageIndex = -1;
-            this.imageSlider1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.imageSlider1.LayoutMode = DevExpress.Utils.Drawing.ImageLayoutMode.MiddleCenter;
-            this.imageSlider1.Location = new System.Drawing.Point(96, 327);
+            this.imageSlider1.LayoutMode = DevExpress.Utils.Drawing.ImageLayoutMode.ZoomInside;
+            this.imageSlider1.Location = new System.Drawing.Point(29, 135);
             this.imageSlider1.Name = "imageSlider1";
-            this.imageSlider1.Size = new System.Drawing.Size(774, 206);
-            this.imageSlider1.TabIndex = 22;
+            this.imageSlider1.Size = new System.Drawing.Size(244, 269);
+            this.imageSlider1.TabIndex = 55;
             this.imageSlider1.Text = "imageSlider1";
             this.imageSlider1.UseDisabledStatePainter = true;
+            // 
+            // txtBookName
+            // 
+            this.txtBookName.Location = new System.Drawing.Point(352, 132);
+            this.txtBookName.Name = "txtBookName";
+            this.txtBookName.Properties.AutoHeight = false;
+            this.txtBookName.Size = new System.Drawing.Size(739, 30);
+            this.txtBookName.TabIndex = 44;
+            // 
+            // labelControl6
+            // 
+            this.labelControl6.Location = new System.Drawing.Point(298, 263);
+            this.labelControl6.Margin = new System.Windows.Forms.Padding(3, 7, 3, 3);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(24, 14);
+            this.labelControl6.TabIndex = 60;
+            this.labelControl6.Text = "价格";
+            // 
+            // txtPublicate_date
+            // 
+            this.txtPublicate_date.EditValue = null;
+            this.txtPublicate_date.Location = new System.Drawing.Point(685, 212);
+            this.txtPublicate_date.Name = "txtPublicate_date";
+            this.txtPublicate_date.Properties.AutoHeight = false;
+            this.txtPublicate_date.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtPublicate_date.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtPublicate_date.Properties.DisplayFormat.FormatString = "";
+            this.txtPublicate_date.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.txtPublicate_date.Properties.EditFormat.FormatString = "";
+            this.txtPublicate_date.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.txtPublicate_date.Size = new System.Drawing.Size(406, 30);
+            this.txtPublicate_date.TabIndex = 51;
             // 
             // ISO15693
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(876, 682);
+            this.ClientSize = new System.Drawing.Size(1129, 795);
             this.Controls.Add(this.xtraTabControl1);
-            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.buttonClearListBox);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.panel13);
@@ -2318,7 +2540,6 @@ namespace RFIDStation
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "高频标签图书初始化程序";
             this.TopMost = true;
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ISO15693_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ISO15693_FormClosed);
             this.Load += new System.EventHandler(this.ISO15693_Load);
@@ -2374,25 +2595,36 @@ namespace RFIDStation
             this.xtraTabControl1.ResumeLayout(false);
             this.xtraTabPage1.ResumeLayout(false);
             this.xtraTabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radioBookType.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
+            this.splitContainerControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
+            this.groupControl2.ResumeLayout(false);
+            this.groupControl2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtTagID.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lueBookInfo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtISBN.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkAutoSave.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtISBNHidden.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkAutoRead.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radioBookType.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtISBNHidden.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkAutoSave.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueBookInfo.Properties)).EndInit();
             this.xtraTabPage2.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtBookName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPress.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAuthor.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPublicate_date.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCreateTime.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPrice.Properties)).EndInit();
+            this.xtraTabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkTopicalName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtISBNRO.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMaxAge.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMinAge.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRating.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBrief.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtImgurl.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPrice.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPress.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCreateTime.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescribe.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAuthor.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageSlider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBookName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPublicate_date.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPublicate_date.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2554,38 +2786,53 @@ namespace RFIDStation
         private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
         private System.Windows.Forms.Label label29;
         private DevExpress.XtraEditors.RadioGroup radioBookType;
-        private DevExpress.XtraEditors.TextEdit txtTagID;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label30;
         private DevExpress.XtraEditors.LookUpEdit lueBookInfo;
-        private DevExpress.XtraEditors.SimpleButton btnSave;
         private DevExpress.XtraEditors.TextEdit txtISBN;
         private DevExpress.XtraEditors.CheckEdit chkAutoSave;
         private DevExpress.XtraEditors.TextEdit txtISBNHidden;
-        private DevExpress.XtraEditors.SimpleButton buttonReadTags;
         private DevExpress.XtraEditors.CheckEdit chkAutoRead;
         private System.Windows.Forms.Label label28;
-        private DevExpress.XtraEditors.SimpleButton btnClear;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private DevExpress.XtraEditors.TextEdit txtBookName;
-        private DevExpress.XtraEditors.BarCodeControl barCodeISBN;
-        private DevExpress.XtraEditors.TextEdit txtPress;
         private DevExpress.XtraEditors.BarCodeControl barCodeISBN2;
+        private DevExpress.XtraEditors.CheckedListBoxControl chkTopicalName;
+        private DevExpress.XtraEditors.LabelControl labelControl14;
+        private DevExpress.XtraEditors.LabelControl labelControl13;
+        private DevExpress.XtraEditors.TextEdit txtISBNRO;
+        private DevExpress.XtraEditors.SpinEdit txtMaxAge;
+        private DevExpress.XtraEditors.SpinEdit txtMinAge;
+        private DevExpress.XtraEditors.BarCodeControl barCodeISBN;
+        private DevExpress.XtraEditors.RatingControl txtRating;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.MemoEdit txtBrief;
+        private DevExpress.XtraEditors.TextEdit txtImgurl;
+        private DevExpress.XtraEditors.LabelControl labelControl10;
+        private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraEditors.SpinEdit txtPrice;
+        private DevExpress.XtraEditors.TextEdit txtPress;
         private DevExpress.XtraEditors.LabelControl labelControl9;
+        private DevExpress.XtraEditors.LabelControl labelControl3;
+        private DevExpress.XtraEditors.TextEdit txtCreateTime;
+        private DevExpress.XtraEditors.MemoEdit txtDescribe;
         private DevExpress.XtraEditors.LabelControl labelControl8;
         private DevExpress.XtraEditors.LabelControl labelControl4;
-        private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.TextEdit txtAuthor;
-        private DevExpress.XtraEditors.TextEdit txtPublicate_date;
-        private DevExpress.XtraEditors.TextEdit txtCreateTime;
-        private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.LabelControl labelControl7;
-        private DevExpress.XtraEditors.SpinEdit txtPrice;
-        private DevExpress.XtraEditors.MemoEdit txtBrief;
-        private DevExpress.XtraEditors.LabelControl labelControl5;
-        private DevExpress.XtraEditors.MemoEdit txtDescribe;
         private DevExpress.XtraEditors.Controls.ImageSlider imageSlider1;
+        private DevExpress.XtraEditors.TextEdit txtBookName;
+        private DevExpress.XtraEditors.LabelControl labelControl6;
+        private DevExpress.XtraEditors.DateEdit txtPublicate_date;
+        private DevExpress.XtraEditors.GroupControl groupControl2;
+        private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
+        private DevExpress.XtraEditors.SearchControl txtTagID;
+        private DevExpress.XtraBars.Navigation.TileBar tileBar1;
+        private DevExpress.XtraBars.Navigation.TileBarGroup tileBarGroup2;
+        private DevExpress.XtraBars.Navigation.TileBarItem buttonReadTags;
+        private DevExpress.XtraBars.Navigation.TileBarItem btnSave;
+        private DevExpress.XtraBars.Navigation.TileBarItem btnClear;
+        private DevExpress.XtraBars.Navigation.TileBarItem btn_ReadTagData;
+        private DevExpress.XtraBars.Navigation.TileBarGroup tileBarGroup1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelEnv;
+        private System.Windows.Forms.RichTextBox txtMessage;
     }
 }

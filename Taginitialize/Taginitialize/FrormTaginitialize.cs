@@ -29,6 +29,7 @@ using Phychips.PR9200;
 using Phychips.Driver;
 using Phychips.Helper;
 using System.Data.SqlClient;
+
 namespace Phychips.PR9200
 {
     public partial class FrormTaginitialize : Form

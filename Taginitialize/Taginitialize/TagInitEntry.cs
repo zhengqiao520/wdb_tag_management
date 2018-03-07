@@ -50,8 +50,8 @@ namespace Phychips.PR9200
                     TagInitEntry_FormClosed(null, null);
                     break;
                 case "change":
-                    this.Close();
-                    Process.Start(Application.ExecutablePath);
+                    Process.Start(System.Reflection.Assembly.GetExecutingAssembly().Location); 
+                    Close();
                     break;
             }
         }
@@ -61,8 +61,8 @@ namespace Phychips.PR9200
                 TileItem tile = sender as TileItem;
                 if (!string.IsNullOrEmpty(user.remarks))
                 {
-                    JObject orderObj = JsonConvert.DeserializeObject(user.remarks) as JObject;
-                    var res = orderObj.Properties().ToList().Any(pro => pro.Name == tile.Tag.ToString() && (bool)pro.Value);
+                    var orderObj = JsonConvert.DeserializeObject(user.remarks);
+                    var res = ((JObject)orderObj).Properties().ToList().Any(pro => pro.Name == tile.Tag.ToString() && (bool)pro.Value);
                     if (!res)
                     {
                         MessageBox.Show("您无访问该菜单的权限!", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -76,7 +76,7 @@ namespace Phychips.PR9200
                     case "FormBookImport":
                         FormBookImport frmBookImport = new PR9200.FormBookImport();
                         frmBookImport.fatherForm = this;
-                        frmBookImport.ShowDialog();
+                        frmBookImport.Show();
                         break;
                     case "FromTaginitialize":
 
@@ -89,7 +89,6 @@ namespace Phychips.PR9200
                             return;
                         }
                         frmUtralHightReq.Show();
-
                         break;
                     case "RFIDStation":
                         RFIDStation.RFIDStation frmHightFreq = new RFIDStation.RFIDStation();
@@ -99,12 +98,15 @@ namespace Phychips.PR9200
                         break;
                     case "FormBookTagsInfo":
                         FormBookTagsInfo frmBookTagsInfo = new PR9200.FormBookTagsInfo();
-                        frmBookTagsInfo.ShowDialog();
+                        frmBookTagsInfo.Show();
                         break;
                     case "FormBookBaseInfo":
                         FormBookBaseInfo frmBaseBookInfo = new PR9200.FormBookBaseInfo();
                         frmBaseBookInfo.fatherForm = this;
-                        frmBaseBookInfo.ShowDialog();
+                        frmBaseBookInfo.Show();
+                        break;
+                    case "FormZTUser":
+                        new FormZTUser(this).Show();
                         break;
                     default:
                         break;
@@ -117,8 +119,10 @@ namespace Phychips.PR9200
         }
         private void TagInitEntry_Load(object sender, EventArgs e)
         {
-            var evn = ConnectInit.IsUATDataBase ? "【测试环境】" : "【生产环境】请谨慎操作！";
-            lblDBEnvironment.Text = $"当前登录为：{evn}";
+            string[] mixIp = SSHInfo.Instance.publish_ip.Split('.');
+            mixIp[0] = mixIp[1] = "*";
+            var ip = ConnectInit.DbType == Infrastructure.DbType.MYSQL_UAT ? SSHInfo.Instance.local_ip : string.Join(".", mixIp);
+            lblDBEnvironment.Text = $"当前登录为：{ip+"【"+ UserReflect<object>.GetEnumDescription(ConnectInit.DbType)+"】"}";
         }
 
     }

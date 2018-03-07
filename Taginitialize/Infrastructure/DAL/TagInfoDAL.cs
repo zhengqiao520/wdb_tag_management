@@ -9,6 +9,7 @@ using System.Data;
 using MySql.Data.MySqlClient;
 using Renci.SshNet;
 using NLog;
+using System.Reflection;
 
 namespace Infrastructure
 {
@@ -581,7 +582,7 @@ namespace Infrastructure
         }
         public static DataTable GetBookInitMappingBooks(string where="") {
             string sql = "select map.ID, map.tag_id, map.isbn, map.status, map.account, map.tag_type, map.create_time,";
-            sql += " map.isbn_type,bi.book_name,be.current_grid_code,concat(be.borrowed_status,'') borrowed_status,bsi.code,bsi.area,bsi.address,case be.borrowed_status when 0 then '上架' when 1 then '下架' when '2' then '借阅中' else '未知' end  borrowed_status_text  from book_init_mapping map";
+            sql += " map.isbn_type,bi.book_name,be.current_grid_code,concat(be.borrowed_status,'') borrowed_status,bsi.code,bsi.area,bsi.address,case be.borrowed_status when 0 then '上架' when 1 then '下架' when '2' then '借阅中' else '未知' end  borrowed_status_text,imgurl from book_init_mapping map";
             sql += " left join book_info bi on map.isbn = bi.isbn_no";
             sql += " left join book_entity be on be.rfid_code = map.tag_id";
             sql += " left join bookgrid_info bgi on bgi.bookgrid_code = be.current_grid_code";
@@ -631,39 +632,6 @@ namespace Infrastructure
                 return null;
         }
 
-
-        public static void testc()
-        {
-            using (var client = new SshClient("101.132.76.165", "root", "ZhgZt20170904$$")) // establishing ssh connection to server where MySql is hosted
-            {
-                client.Connect();
-                if (client.IsConnected)
-                {
-                    var portForwarded = new ForwardedPortLocal("127.0.0.1", 3356, "127.0.0.1", 3306);
-                    client.AddForwardedPort(portForwarded);
-                    portForwarded.Start();
-                    using (MySqlConnection con = new MySqlConnection("Database = book_filing; Data Source =localhost; User Id = root; Password = 123456; charset = utf8; pooling = true"))
-                    {
-                        using (MySqlCommand com = new MySqlCommand("SELECT * FROM book_info", con))
-                        {
-                            com.CommandType = CommandType.Text;
-                            DataSet ds = new DataSet();
-                            MySqlDataAdapter da = new MySqlDataAdapter(com);
-                            da.Fill(ds);
-                            foreach (DataRow drow in ds.Tables[0].Rows)
-                            {
-                                Console.WriteLine("From MySql: " + drow[1].ToString());
-                            }
-                        }
-                    }
-                    client.Disconnect();
-                }
-                else
-                {
-                    Console.WriteLine("Client cannot be reached...");
-                }
-            }
-        }
 
         /// <summary>
         /// 删除标签建档信息
@@ -838,6 +806,78 @@ namespace Infrastructure
             }
             return res;
         }
+
+        public static List<T> GetInfoListPagination<T>(Pagination page=null) where T:class,new()
+        {
+            if (page == null) {
+                page = new Pagination();
+            }
+            string table = UserReflect<T>.GetUserTableName();
+            var total_count = MySqlInstance.ExecuteScalarText($"select count(0) from {table}", null) ?? "0";
+            page.TotalCount =int.Parse(total_count.ToString());
+            string fileds = !string.IsNullOrEmpty(page.Fileds) ? page.Fileds : "*",
+                   //limit = $"{(page.EnablePaging?"limit "+page.PageSize * (page.PageCode - 1):"")}",
+                   limit="",
+                   filter =$" where {(!string.IsNullOrEmpty(page.Filter) ? page.Filter : " 1=1")}";
+            var sql = $"select {fileds} from {table} {filter}{limit}";
+           var res=MySqlInstance.ExecuteList<T>(CommandType.Text, sql, null);
+            if (res != null) {
+                return res;
+            }
+            return null;
+        }
+        /// <summary>
+        /// 非空信息更新
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="t"></param>
+        /// <returns></returns>
+        public static bool Update<T>(T t)
+        {
+          return  MySqlInstance.ExecuteNonQuery(CommandType.Text, GetUpdateSQL(t).ToString(), null)>0;
+        }
+        private static StringBuilder GetUpdateSQL<T>(T obj)
+        {
+            string primaryKey = string.Empty;
+            string tableKey = UserReflect<T>.GetUserField(FieldTypeEnum.Identity,obj,ref primaryKey);
+            string tableName = UserReflect<T>.GetUserTableName();
+            StringBuilder strSQL = new StringBuilder();
+            if (string.IsNullOrEmpty(primaryKey))
+            {
+                return strSQL;
+            }
+            Type t = obj.GetType();
+            strSQL.Append("update " + tableName + " set ");
+            string subSQL = "";
+            string condition = " where " + tableKey + "='" + primaryKey.Replace("'", "''") + "'";
+            foreach (PropertyInfo pi in t.GetProperties())
+            {
+                object name = pi.Name;
+                Type piType = pi.PropertyType;
+                DefineAttribute attr = pi.GetCustomAttribute(typeof(DefineAttribute), false) as DefineAttribute;
+                string value1 = Convert.ToString(pi.GetValue(obj, null)).Replace("'", "''");
+                if ((null != attr  && (attr.PrimaryKey || attr.Ignor))
+                    ||string.IsNullOrEmpty(value1))
+                {
+                    continue;
+                }
+                if ((piType.FullName == "System.DateTime"&&!(Convert.ToDateTime(value1)>DateTime.MinValue))
+                    || (piType.FullName == "System.Decimal"&& !(Convert.ToDecimal(value1) > 0)&&attr.GtrZero))
+                {
+                    continue;
+                }
+                string properName = name.ToString().ToLower();
+                if (properName != tableKey.ToLower())
+                {
+                    value1 = value1== "@null" ? "" : value1;
+                    subSQL += Convert.ToString(name) + "='" + value1 + "',";
+                }
+            }
+            subSQL = subSQL.TrimEnd(',');
+            strSQL.Append(subSQL);
+            strSQL.Append(condition);
+            return strSQL;
+        }
         #endregion
 
         #region sqlite 操作
@@ -938,5 +978,6 @@ namespace Infrastructure
         }
         #endregion
     }
+
 }
 

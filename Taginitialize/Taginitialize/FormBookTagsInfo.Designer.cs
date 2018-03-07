@@ -46,8 +46,11 @@
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
+            this.导出Excel文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
@@ -59,6 +62,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdRecordList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRecordList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainerControl1
@@ -150,6 +154,7 @@
             // 
             // grdRecordList
             // 
+            this.grdRecordList.ContextMenuStrip = this.contextMenuStrip1;
             this.grdRecordList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grdRecordList.Location = new System.Drawing.Point(2, 21);
             this.grdRecordList.MainView = this.gvRecordList;
@@ -170,6 +175,7 @@
             this.gridColumn7,
             this.gridColumn8,
             this.gridColumn5,
+            this.gridColumn3,
             this.gridColumn4});
             this.gvRecordList.GridControl = this.grdRecordList;
             this.gvRecordList.Name = "gvRecordList";
@@ -240,7 +246,7 @@
             this.gridColumn8.FieldName = "area";
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.Visible = true;
-            this.gridColumn8.VisibleIndex = 7;
+            this.gridColumn8.VisibleIndex = 8;
             // 
             // gridColumn5
             // 
@@ -248,8 +254,16 @@
             this.gridColumn5.FieldName = "account";
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 8;
+            this.gridColumn5.VisibleIndex = 9;
             this.gridColumn5.Width = 90;
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "图片路径";
+            this.gridColumn3.FieldName = "imgurl";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 7;
             // 
             // gridColumn4
             // 
@@ -268,6 +282,20 @@
             // 
             this.repositoryItemTextEdit1.AutoHeight = false;
             this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.导出Excel文件ToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(154, 48);
+            // 
+            // 导出Excel文件ToolStripMenuItem
+            // 
+            this.导出Excel文件ToolStripMenuItem.Name = "导出Excel文件ToolStripMenuItem";
+            this.导出Excel文件ToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.导出Excel文件ToolStripMenuItem.Text = "导出Excel文件";
+            this.导出Excel文件ToolStripMenuItem.Click += new System.EventHandler(this.导出Excel文件ToolStripMenuItem_Click);
             // 
             // FormBookTagsInfo
             // 
@@ -290,6 +318,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdRecordList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRecordList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -316,5 +345,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem 导出Excel文件ToolStripMenuItem;
     }
 }

@@ -10,22 +10,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 namespace Phychips.PR9200
 {
     public partial class FormBookBaseInfoDetail : Form
     {
-        public class BookTopicalCheckItem : BooktopicalMappings {
-            public bool isChecked { get; set; } = false;
-        }
+
         private static Logger logger = LogManager.GetCurrentClassLogger();
         public delegate BookInfoExtend SetBookinfoEventHander(RowEnum rowEnum);
         public event SetBookinfoEventHander SetBookinfoEvent;
         public Form fathForm = null;
-        public FormBookBaseInfoDetail(BookInfoExtend bookInfoExtend)
+        private BookInfoExtend bookInfoExtend = null;
+        private string endpoint = $"http://wdb007.oss-cn-hangzhou.aliyuncs.com/";
+
+        public FormBookBaseInfoDetail(BookInfoExtend _bookInfoExtend)
         {
             InitializeComponent();
             InitData();
+            bookInfoExtend = _bookInfoExtend;
             InitBookInfoExtend(bookInfoExtend);
           
         }
@@ -70,8 +71,9 @@ namespace Phychips.PR9200
                 imageSlider1.Images.Clear();
                 if (!string.IsNullOrEmpty(bookInfoExtend.imgurl))
                 {
-                    this.imageSlider1.Images.Add(ImageExtensions.GetImageFromNet($"http://wdb007.oss-cn-hangzhou.aliyuncs.com/" + bookInfoExtend.imgurl));
+                    this.imageSlider1.Images.Add(ImageExtensions.GetImageFromNet(endpoint + bookInfoExtend.imgurl));
                 }
+                grdRecordList.DataSource = TagInfoDAL.GetBookInitMappingBooks($"map.isbn={bookInfoExtend.isbn_no}");
             }
         }
         private void InitData() {
@@ -150,6 +152,54 @@ namespace Phychips.PR9200
             catch(Exception ee) {
                 MessageBox.Show("保存修改失败！", "系统提示");
                 logger.Log(LogLevel.Error, $"修改isbn：{txtISBN.Text}对应图书信息失败" + ee.Message);
+            }
+        }
+
+        private void buttonEditUpload_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+           
+            string key = $"{txtISBN.Text}.png";
+            if (e.Button.Tag.ToString() == "btnSelectCover") {
+                OpenFileDialog ofd = new OpenFileDialog();
+                ofd.Filter = "图片文件(*.jpg;*.png)|*.jpg;*.png";
+                ofd.Multiselect = false;
+                ofd.DefaultExt = ".png";
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    Image img = Image.FromFile(ofd.FileName);
+                    this.buttonEditUpload.Text = ofd.FileName;
+                    this.imageSlider1.Images.Add(img);
+                    imageSlider1.SlideNext();
+                }
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(buttonEditUpload.Text)) return;
+                if (MessageBox.Show("您确认要选择并上传该图片作为封面吗？", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.OK)
+                {
+                    var server_time = TagInfoDAL.GetMysqlSeverDateTime().ToString("yyyyMM");
+                    var default_bucket = "wdb007";
+                    var bucket_path = $"book_cover/{server_time}/{key}";
+                    Aliyun.OSS.PutObjectResult result = OSSUtils.PutObjectProgress(buttonEditUpload.Text.Trim(), bucket_path,bucketName: default_bucket);
+                    if (result!=null&&result.HttpStatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        buttonEditUpload.Text = null;
+                        var res=TagInfoDAL.Update(new BookInfo {
+                            isbn_no = txtISBN.Text.Trim(),
+                            imgurl = $"/{bucket_path}"
+                        });
+                        if (res) {
+                            MessageBox.Show("图书封面上传成功！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            bookInfoExtend.imgurl = bucket_path;
+                            txtImgurl.Text = bucket_path;
+                        }
+                    }
+                }
+                else {
+                    if (imageSlider1.Images.Count > 0) {
+                        imageSlider1.Images[0] = null;
+                    }
+                }
             }
         }
     }

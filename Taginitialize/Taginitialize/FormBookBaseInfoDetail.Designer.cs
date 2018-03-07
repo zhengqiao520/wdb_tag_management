@@ -28,7 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraPrinting.BarCode.Code39ExtendedGenerator code39ExtendedGenerator2 = new DevExpress.XtraPrinting.BarCode.Code39ExtendedGenerator();
+            DevExpress.XtraPrinting.BarCode.CodabarGenerator codabarGenerator1 = new DevExpress.XtraPrinting.BarCode.CodabarGenerator();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormBookBaseInfoDetail));
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             this.barCodeISBN = new DevExpress.XtraEditors.BarCodeControl();
             this.txtPress = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
@@ -65,6 +68,20 @@
             this.txtMinAge = new DevExpress.XtraEditors.SpinEdit();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
             this.txtPublicate_date = new DevExpress.XtraEditors.DateEdit();
+            this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
+            this.grdRecordList = new DevExpress.XtraGrid.GridControl();
+            this.gvRecordList = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.buttonEditUpload = new DevExpress.XtraEditors.ButtonEdit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPress.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAuthor.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCreateTime.Properties)).BeginInit();
@@ -85,6 +102,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtMinAge.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPublicate_date.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPublicate_date.Properties)).BeginInit();
+            this.xtraTabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdRecordList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvRecordList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonEditUpload.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // barCodeISBN
@@ -99,8 +120,8 @@
             this.barCodeISBN.Name = "barCodeISBN";
             this.barCodeISBN.Padding = new System.Windows.Forms.Padding(10, 2, 10, 0);
             this.barCodeISBN.Size = new System.Drawing.Size(637, 60);
-            code39ExtendedGenerator2.WideNarrowRatio = 3F;
-            this.barCodeISBN.Symbology = code39ExtendedGenerator2;
+            codabarGenerator1.WideNarrowRatio = 2F;
+            this.barCodeISBN.Symbology = codabarGenerator1;
             this.barCodeISBN.TabIndex = 5;
             // 
             // txtPress
@@ -195,7 +216,6 @@
             this.txtImgurl.Location = new System.Drawing.Point(335, 380);
             this.txtImgurl.Name = "txtImgurl";
             this.txtImgurl.Properties.AutoHeight = false;
-            this.txtImgurl.Properties.ReadOnly = true;
             this.txtImgurl.Size = new System.Drawing.Size(582, 30);
             this.txtImgurl.TabIndex = 24;
             // 
@@ -350,10 +370,12 @@
             this.xtraTabControl1.Size = new System.Drawing.Size(939, 750);
             this.xtraTabControl1.TabIndex = 35;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
-            this.xtraTabPage2});
+            this.xtraTabPage2,
+            this.xtraTabPage1});
             // 
             // xtraTabPage2
             // 
+            this.xtraTabPage2.Controls.Add(this.buttonEditUpload);
             this.xtraTabPage2.Controls.Add(this.chkTopicalName);
             this.xtraTabPage2.Controls.Add(this.labelControl14);
             this.xtraTabPage2.Controls.Add(this.labelControl13);
@@ -506,6 +528,152 @@
             this.txtPublicate_date.Size = new System.Drawing.Size(249, 30);
             this.txtPublicate_date.TabIndex = 11;
             // 
+            // xtraTabPage1
+            // 
+            this.xtraTabPage1.Controls.Add(this.grdRecordList);
+            this.xtraTabPage1.Name = "xtraTabPage1";
+            this.xtraTabPage1.Size = new System.Drawing.Size(933, 721);
+            this.xtraTabPage1.Text = "借阅建档信息";
+            // 
+            // grdRecordList
+            // 
+            this.grdRecordList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdRecordList.Location = new System.Drawing.Point(0, 0);
+            this.grdRecordList.MainView = this.gvRecordList;
+            this.grdRecordList.Name = "grdRecordList";
+            this.grdRecordList.Size = new System.Drawing.Size(933, 721);
+            this.grdRecordList.TabIndex = 5;
+            this.grdRecordList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gvRecordList});
+            // 
+            // gvRecordList
+            // 
+            this.gvRecordList.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn1,
+            this.gridColumn2,
+            this.gridColumn9,
+            this.gridColumn10,
+            this.gridColumn6,
+            this.gridColumn7,
+            this.gridColumn8,
+            this.gridColumn5,
+            this.gridColumn3,
+            this.gridColumn4});
+            this.gvRecordList.GridControl = this.grdRecordList;
+            this.gvRecordList.GroupCount = 1;
+            this.gvRecordList.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Count, "borrowed_status_text", null, "(计数={0})")});
+            this.gvRecordList.Name = "gvRecordList";
+            this.gvRecordList.OptionsBehavior.AutoExpandAllGroups = true;
+            this.gvRecordList.OptionsNavigation.AutoFocusNewRow = true;
+            this.gvRecordList.OptionsSelection.MultiSelect = true;
+            this.gvRecordList.OptionsView.ShowAutoFilterRow = true;
+            this.gvRecordList.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.ShowAlways;
+            this.gvRecordList.OptionsView.ShowFooter = true;
+            this.gvRecordList.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn7, DevExpress.Data.ColumnSortOrder.Ascending)});
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "标签ID";
+            this.gridColumn1.FieldName = "tag_id";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.OptionsColumn.AllowEdit = false;
+            this.gridColumn1.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "tag_id", "记录数：{0}")});
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 1;
+            this.gridColumn1.Width = 200;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.Caption = "ISBN号";
+            this.gridColumn2.FieldName = "isbn";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Width = 90;
+            // 
+            // gridColumn9
+            // 
+            this.gridColumn9.Caption = "书柜编号";
+            this.gridColumn9.FieldName = "code";
+            this.gridColumn9.Name = "gridColumn9";
+            this.gridColumn9.Visible = true;
+            this.gridColumn9.VisibleIndex = 2;
+            this.gridColumn9.Width = 101;
+            // 
+            // gridColumn10
+            // 
+            this.gridColumn10.Caption = "当前书格";
+            this.gridColumn10.FieldName = "current_grid_code";
+            this.gridColumn10.Name = "gridColumn10";
+            this.gridColumn10.Visible = true;
+            this.gridColumn10.VisibleIndex = 3;
+            this.gridColumn10.Width = 101;
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "图书名称";
+            this.gridColumn6.FieldName = "book_name";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 0;
+            this.gridColumn6.Width = 190;
+            // 
+            // gridColumn7
+            // 
+            this.gridColumn7.Caption = "借阅状态";
+            this.gridColumn7.FieldName = "borrowed_status_text";
+            this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.Visible = true;
+            this.gridColumn7.VisibleIndex = 3;
+            // 
+            // gridColumn8
+            // 
+            this.gridColumn8.Caption = "投放地点";
+            this.gridColumn8.FieldName = "area";
+            this.gridColumn8.Name = "gridColumn8";
+            this.gridColumn8.Visible = true;
+            this.gridColumn8.VisibleIndex = 4;
+            this.gridColumn8.Width = 101;
+            // 
+            // gridColumn5
+            // 
+            this.gridColumn5.Caption = "标签操作人";
+            this.gridColumn5.FieldName = "account";
+            this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.Visible = true;
+            this.gridColumn5.VisibleIndex = 5;
+            this.gridColumn5.Width = 84;
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "图片路径";
+            this.gridColumn3.FieldName = "imgurl";
+            this.gridColumn3.Name = "gridColumn3";
+            // 
+            // gridColumn4
+            // 
+            this.gridColumn4.Caption = "标签录入时间";
+            this.gridColumn4.DisplayFormat.FormatString = "yyyy/MM/dd HH:mm:ss";
+            this.gridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.gridColumn4.FieldName = "create_time";
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.OptionsColumn.AllowEdit = false;
+            this.gridColumn4.Visible = true;
+            this.gridColumn4.VisibleIndex = 6;
+            this.gridColumn4.Width = 160;
+            // 
+            // buttonEditUpload
+            // 
+            this.buttonEditUpload.Location = new System.Drawing.Point(12, 417);
+            this.buttonEditUpload.Name = "buttonEditUpload";
+            this.buttonEditUpload.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.OK, "上传", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleLeft, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", "btnUpload", null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "选择图片", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.Default, ((System.Drawing.Image)(resources.GetObject("buttonEdit1.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", "btnSelectCover", null, true)});
+            this.buttonEditUpload.Size = new System.Drawing.Size(244, 22);
+            this.buttonEditUpload.TabIndex = 44;
+            this.buttonEditUpload.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.buttonEditUpload_ButtonClick);
+            // 
             // FormBookBaseInfoDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -538,6 +706,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtMinAge.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPublicate_date.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPublicate_date.Properties)).EndInit();
+            this.xtraTabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grdRecordList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvRecordList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonEditUpload.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -580,5 +752,19 @@
         private DevExpress.XtraEditors.DateEdit txtPublicate_date;
         private DevExpress.XtraEditors.SimpleButton btnSaveBookName;
         private DevExpress.XtraEditors.CheckedListBoxControl chkTopicalName;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
+        private DevExpress.XtraGrid.GridControl grdRecordList;
+        private DevExpress.XtraGrid.Views.Grid.GridView gvRecordList;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraEditors.ButtonEdit buttonEditUpload;
     }
 }

@@ -11,13 +11,12 @@ namespace Infrastructure
 {
     public class ConnectInit {
 
-        public static string MYSQLConfig = "mysql";
-        private const string SQLITEConfig = "sqlite";
+        public static DbType DbType { get; set; } = DbType.MySQL;
         private const string NFCAddress =  "nfc_address";
 
         public static string MysqlConnectionString {
             get {
-                return GetConfigString(MYSQLConfig);
+                return GetConfigString(DbType);
             }
         }
         public static string NFC_Address {
@@ -28,16 +27,12 @@ namespace Infrastructure
         }
         public static string SqliteConnectionString {
             get {
-                return GetConfigString(SQLITEConfig);
+                return GetConfigString(DbType.SQLIITE);
             }
         }
-        private static string GetConfigString(string name) {
-            return System.Configuration.ConfigurationManager.ConnectionStrings[name].ConnectionString;
-        }
-        public static bool IsUATDataBase {
-            get {
-                return MYSQLConfig != "mysql";
-            }
+        private static string GetConfigString(DbType dbType) {
+            string configName = dbType == DbType.MySQL ? "mysql" : (dbType == DbType.MYSQL_UAT ? "mysql_uat" : dbType == DbType.MYSQ_DEV ? "mysql_dev" : "sqlite");
+            return System.Configuration.ConfigurationManager.ConnectionStrings[configName].ConnectionString;
         }
     }
     public class Utility:DbHelper
@@ -157,13 +152,22 @@ namespace Infrastructure
             byte[] bytes = Encoding.GetEncoding("GBK").GetBytes(data);
             return Convert.ToBase64String(transform.TransformFinalBlock(bytes, 0, bytes.Length));
         }
-        public static SSHInfo SSHInfo {
-            get
+        public static SSHInfo SetSSH(DbType dbype) {
+            string env = string.Empty;
+            if (dbype == DbType.MySQL)
             {
-                string configSSH = System.Configuration.ConfigurationManager.AppSettings["ssh"].ToString();
-                configSSH = DES3Decrypt(configSSH);
-                return  JsonConvert.DeserializeObject<SSHInfo>(configSSH);
+                env = "ssh";
             }
+            else if (dbype == DbType.MYSQL_UAT)
+            {
+                env = "ssh_uat";
+            }
+            else if (dbype == DbType.MYSQ_DEV) {
+                env = "ssh_dev";
+            }
+            string configSSH = System.Configuration.ConfigurationManager.AppSettings[env].ToString();
+            configSSH = DES3Decrypt(configSSH);
+            return  JsonConvert.DeserializeObject<SSHInfo>(configSSH);
         }
         public static void EmptyConnection() {
             _MySqlInstance = null;

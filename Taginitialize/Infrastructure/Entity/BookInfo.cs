@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Entity
 {
+    [Define(TableName = "book_info")]
     [Serializable]
    public class BookInfo
     {
-
+        [Define(PrimaryKey =true)]
         /// <summary>
         /// isbn_no
         /// </summary>		
@@ -58,6 +59,7 @@ namespace Infrastructure.Entity
             get;
             set;
         }
+        [Define(GtrZero =true)]
         /// <summary>
         /// price
         /// </summary>		

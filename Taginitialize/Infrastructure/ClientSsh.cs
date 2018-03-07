@@ -11,7 +11,9 @@ namespace Infrastructure
     {
         private static readonly  ClientSsh clientSSH = new ClientSsh();
         private  SshClient sshClient = null;
-        private ClientSsh()
+        private ForwardedPortLocal localFwdPort = null;
+        private ClientSsh() {}
+        public  void CreateInstance()
         {
             uint port = uint.Parse(SSHInfo.Instance.local_port);
             string host = SSHInfo.Instance.local_ip;
@@ -23,17 +25,21 @@ namespace Infrastructure
                 sshClient.Connect();
             }
 
-            ForwardedPortLocal localFwdPort = new ForwardedPortLocal(host, port, host, port);
+            localFwdPort = new ForwardedPortLocal(host, port, host, port);
             sshClient.AddForwardedPort(localFwdPort);
             localFwdPort.Start();
         }
-        public static ClientSsh Instance {
-            get {
+        public static ClientSsh Instance
+        {
+            get
+            {
                 return clientSSH;
             }
         }
         public void Disconnect() {
             sshClient.Disconnect();
+            localFwdPort.Stop();
+            Utility.EmptyConnection();
         }
     }
 }

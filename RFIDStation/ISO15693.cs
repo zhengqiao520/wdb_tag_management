@@ -12,6 +12,7 @@ using Infrastructure;
 using Infrastructure.Entity;
 using System.Linq;
 using System.Threading.Tasks;
+using Editor = DevExpress.XtraEditors;
 
 namespace RFIDStation
 {
@@ -19,7 +20,7 @@ namespace RFIDStation
     {
         
 
-        private int serialDevice;                   //串口设备
+        private int serialDevice;
         public static Thread receiveFrameThread = null;
         public bool bOperatingSerial;
         public delegate void Delegate(object obj);
@@ -28,7 +29,7 @@ namespace RFIDStation
         public StreamWriter opTagLogFileWrite;
         private int opTagTimers = 0;
         private int directOpTagMode = 0;
-        //定时器
+        public bool b_hasTag = false;
         private System.Windows.Forms.Timer autoTiggerTimer = new System.Windows.Forms.Timer();
 
         private void clearOpResult()
@@ -99,14 +100,8 @@ namespace RFIDStation
             bOperatingSerial = false;
 
             DateTime date=TagInfoDAL.GetMysqlSeverDateTime();
-           //var res= TagInfoDAL.InsertBookEntity(new BookEntity {
-           //      rfidCode="110",
-           //       isbnNo="112",
-           //        createTime= date,
-           //        status=1
-           // });
             this.textBoxWMBlockData.Text = "01020304\r\n01020304";
-
+            InitData();
             if (readerStatus)
             {
                 autoTiggerTimer.Enabled = true;
@@ -138,7 +133,6 @@ namespace RFIDStation
         {
             if (e.KeyChar == (char)Keys.Enter && txtISBN.Text.Length > 12)
             {
-                //SaveISBN();
                 SelectSetBookInfo(txtISBN.Text.Trim());
             }
             if (txtISBN.Text.Length > 18) {
@@ -149,7 +143,6 @@ namespace RFIDStation
             txtISBN.Focus();
             txtISBNHidden.Focus();
         }
-        /*查询设置书籍信息*/
         private void SelectSetBookInfo(string isbn)
         {
             bool isMulitiBook = true;
@@ -167,7 +160,7 @@ namespace RFIDStation
             MessageBox.Show("根据ISBN未检测到图书基本信息，无法建档！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             btnClear_Click(null, null);
         }
-        private async void SaveISBN()
+        private  void SaveISBN()
         {
             var tagID = txtTagID.Text.Trim();
             var isbn = txtISBN.Text.Trim();
@@ -182,7 +175,11 @@ namespace RFIDStation
                 MessageBox.Show("TagID或ISBN编号不能为空！","系统提示",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 return;
             }
-            WriteNFCBlock(txtISBN.Text.Trim());
+            bool write_result = false;
+            WriteNFCBlock(txtISBN.Text.Trim(),out write_result);
+            if (!write_result) {
+                return;
+            }
             var tagInfo = TagInfoDAL.SelectBookInitMapping(tagID);
             if (tagInfo == null)
             {
@@ -220,7 +217,6 @@ namespace RFIDStation
                 }
             }
             BindTagList();
-            first_char = null;
         }
         private void BindTagList()
         {
@@ -230,8 +226,7 @@ namespace RFIDStation
 
         private void ISO15693_Load(object sender, EventArgs e)
         {
-            var evn = ConnectInit.IsUATDataBase ? "【测试环境】" : "【生产环境】";
-            Text = Text + $" 当前登录为：{evn}";
+            toolStripStatusLabelEnv.Text = $" 当前登录为：{UserReflect<object>.GetEnumDescription(ConnectInit.DbType)}";
             txtISBN.Focus();
             txtISBNHidden.Focus();
             BindTagList();
@@ -699,10 +694,6 @@ namespace RFIDStation
             bOperatingSerial = false;
             if (rlt > 0)
             {
-                this.textBoxOpISO15693TagRltSrcAddr.Text = pGetUid.result.srcAddr.ToString("X").PadLeft(4, '0');
-                this.textBoxOpISO15693TagRltDestAddr.Text = pGetUid.result.targetAddr.ToString("X").PadLeft(4, '0');
-                
-
                 if (pGetUid.num > 0)
                 {
                     int i = 0, j = 0;
@@ -714,17 +705,8 @@ namespace RFIDStation
                         {
                             s += pGetUid.uid[i * 8 + j].ToString("X").PadLeft(2, '0');
                         }
-                        //将下拉框改为文本框
                         txtTagID.Text = s;
-                        /*
-                            if (this.listBoxUID.FindString(s) < 0)
-                            {
-                                this.listBoxUID.Items.Add(s);
-                            }
-                        */
                     }
-                    this.textBoxReadTagNum.Text = this.listBoxUID.Items.Count.ToString("X").PadLeft(2, '0');
-                    this.textBoxRemainTagNum.Text = pGetUid.remainNum.ToString("X").PadLeft(2, '0');
                 }
             }
             if (!string.IsNullOrEmpty(txtISBN.Text) && !string.IsNullOrEmpty(txtTagID.Text)) {
@@ -732,6 +714,10 @@ namespace RFIDStation
             }
             txtISBN.Focus();
             txtISBNHidden.Focus();
+            //if (!string.IsNullOrEmpty(txtTagID.Text.Trim()))
+            //{
+            //    ReadTagData(txtTagID.Text.Trim());
+            //}
             //DisplayRcvInf(rcvBuffer, "查询场内标签返回：");
             //DisplaySendInf(sendBuffer, "查询场内标签：");
         }
@@ -800,8 +786,116 @@ namespace RFIDStation
             DisplayRcvInf(rcvBuffer, "锁定数据块返回：");
             DisplaySendInf(sendBuffer, "锁定数据块：");
         }
-        private void buttonReadMBlock_Click(object sender, EventArgs e)
-        {
+        private void ReadTagData(Func<string,bool> act,string tag_id="") {
+
+            if (serialDevice < 0)
+            {
+                MessageBox.Show("请先打开串口");
+                return;
+            }
+            clearOpResult();
+
+            int i = 0;
+
+            Byte[] uid = new Byte[hfReaderDll.HFREADER_ISO15693_SIZE_UID];
+            ushort[] addrArray = new ushort[2];
+            Byte[] blockAddr = new Byte[1];
+            Byte[] blockNum = new Byte[1];
+
+            ISO15693_BLOCKPARAM pBlock = new ISO15693_BLOCKPARAM();
+            pBlock.block = new Byte[hfReaderDll.HFREADER_ISO15693_SIZE_BLOCK * hfReaderDll.HFREADER_ISO15693_MAX_BLOCK_NUM];
+            Byte[] sendBuffer = new Byte[hfReaderDll.HFREADER_BUFFER_MAX];
+            Byte[] rcvBuffer = new Byte[hfReaderDll.HFREADER_BUFFER_MAX];
+
+            if (!GetDeviceAddr(addrArray))
+            {
+                return;
+            }
+
+            if (GetHexInput(tag_id, uid, hfReaderDll.HFREADER_ISO15693_SIZE_UID) <= 0)
+            {
+                return;
+            }
+
+            if (GetHexInput("00", blockAddr, 1) <= 0)
+            {
+                return;
+            }
+            pBlock.addr = blockAddr[0];
+
+            if (GetHexInput("18", blockNum, 1) <= 0)
+            {
+                return;
+            }
+            pBlock.num = blockNum[0];
+
+            if (blockNum[0] > hfReaderDll.HFREADER_ISO15693_MAX_BLOCK_NUM)
+            {
+                return;
+            }
+
+            while (bOperatingSerial) ;
+            bOperatingSerial = true;
+            int rlt = hfReaderDll.iso15693ReadBlock(serialDevice, addrArray[0], addrArray[1], uid, ref pBlock, sendBuffer, rcvBuffer);
+            bOperatingSerial = false;
+            if (rlt > 0)
+            {
+                if (pBlock.result.flag == 0)
+                {
+                    String data = "";
+                    int j = 0;
+                    for (j = 0; j < pBlock.num; j++)
+                    {
+                        for (i = 0; i < 4; i++)
+                        {
+                            var block = pBlock.block[j * 4 + i].ToString("X").PadLeft(2, '0');
+                            data += block;
+                        }
+                    }
+                    act(HexUtil.HexStringToString(data));
+                }
+                DisplayOpResult(ref pBlock.result);
+            }
+            //DisplayRcvInf(rcvBuffer, "读多块数据返回：");
+            //DisplaySendInf(sendBuffer, "读多块数据：");
+        }
+
+        ///// <summary>
+        ///// HexString to String
+        ///// </summary>
+        ///// <param name="hexString"></param>
+        ///// <param name="encoding"></param>
+        ///// <returns></returns>
+        //private  string HexStringToString(string hexString, Encoding encoding = null)
+        //{
+        //    List<string> listBlock = new List<string>();
+        //    GenarateHexList(listBlock, hexString);
+        //    if (string.IsNullOrEmpty(hexString))
+        //        return string.Empty;
+
+        //    if (encoding == null)
+        //        encoding = Encoding.ASCII;
+
+        //    string[] byteitem = hexString.Trim().Split(' ');
+        //    List<byte> lstByte = new List<byte>();
+        //    foreach (string item in byteitem)
+        //        lstByte.Add(Convert.ToByte(item, 16));
+
+        //    return encoding.GetString(lstByte.ToArray());
+        //}
+
+        //private void GenarateHexList(List<string> listBlock,string hexString, int startIndex = 0) {
+        //    try
+        //    {
+        //        if (startIndex > hexString.Length) return;
+        //        string subTex = hexString.Substring(startIndex, 2);
+        //        listBlock.Add(subTex);
+        //        startIndex += 2;
+        //        GenarateHexList(listBlock, hexString, startIndex);
+        //    }
+        //    catch{ }
+        //}
+        private void ReadMBlock() {
             if (serialDevice < 0)
             {
                 MessageBox.Show("请先打开串口");
@@ -874,6 +968,10 @@ namespace RFIDStation
             }
             DisplayRcvInf(rcvBuffer, "读多块数据返回：");
             DisplaySendInf(sendBuffer, "读多块数据：");
+        }
+        private void buttonReadMBlock_Click(object sender, EventArgs e)
+        {
+            ReadMBlock();
         }
 
         private void buttonWriteMBlock_Click(object sender, EventArgs e)
@@ -1536,24 +1634,6 @@ namespace RFIDStation
                 MessageBox.Show("删除失败!"+ee.Message, "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-        private DateTime _dt = DateTime.Now;  //定义一个成员函数用于保存每次的时间点
-        private string first_char=string.Empty;
-        private void txtISBN_KeyUp(object sender, KeyEventArgs e)
-        {
-            //var textBox = sender as DevExpress.XtraEditors.TextEdit;
-            //if (string.IsNullOrEmpty(first_char))
-            //{
-            //    first_char = textBox.Text.Trim();
-            //}
-            //DateTime tempDt = DateTime.Now;          //保存按键按下时刻的时间点
-            //TimeSpan ts = tempDt.Subtract(_dt);     //获取时间间隔
-            //if (ts.Milliseconds > 50)
-            //{
-            //    txtISBN.EditValue = "";
-            //    txtISBN.Text = "";
-            //}//判断时间间隔，如果时间间隔大于50毫秒，则将TextBox清空
-            //_dt = tempDt;
-        }
 
         private void txtISBNHidden_TextChanged(object sender, EventArgs e)
         {
@@ -1563,32 +1643,20 @@ namespace RFIDStation
 
         private void txtTagID_EditValueChanged(object sender, EventArgs e)
         {
-            if (null != txtTagID.EditValue&&txtTagID.Text.Length>12)
-            {
-               
-                try
-                {
-                    var bookinfoExt = TagInfoDAL.SelectBookinfoExt(txtTagID.Text.Trim());
-                    this.barCodeISBN.Text = bookinfoExt.isbn_no;
-                    this.txtBookName.Text = bookinfoExt.book_name;
-                    this.barCodeISBN2.Text = bookinfoExt.isbn_no;
-                    this.txtAuthor.Text = bookinfoExt.author;
-                    this.txtBrief.Text = bookinfoExt.brief;
-                    this.txtCreateTime.Text = bookinfoExt.create_time.ToString();
-                    this.txtDescribe.Text = bookinfoExt.describe;
-                    this.txtPress.Text = bookinfoExt.press;
-                    this.txtPrice.Text = bookinfoExt.price.ToString();
-                    this.txtPublicate_date.Text = bookinfoExt.publication_date.ToString();
-                    imageSlider1.Images.Clear();
-                    this.imageSlider1.Images.Add(ImageExtensions.GetImageFromNet($"http://wdb007.oss-cn-hangzhou.aliyuncs.com/" + bookinfoExt.imgurl));
-                }
-                catch {
-
-                }
-            }
+            
         }
-        private void WriteNFCBlock(string isbn="123456789")
+        private void InitData()
         {
+            var topicalMappingList = TagInfoDAL.GetBookTopicalMappingList().Select(item => new BookTopicalCheckItem { id = item.id, topical_code = item.topical_code, topical_name = item.topical_name }).ToList();
+            chkTopicalName.DataSource = topicalMappingList.Where(item => item.topical_code != "0000").ToList();
+            chkTopicalName.DisplayMember = "topical_name";
+            chkTopicalName.ValueMember = "topical_code";
+            chkTopicalName.CheckMember = "isChecked";
+        }
+        private void WriteNFCBlock(string isbn,out bool result)
+        {
+            result = false;
+            isbn = string.IsNullOrEmpty(isbn) ? "" : isbn;
             string tag_id = this.txtTagID.Text;
             if (string.IsNullOrEmpty(tag_id)) {
                 MessageBox.Show("未读取到标签，写入NFC地址失败!", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -1707,6 +1775,12 @@ namespace RFIDStation
                 if (pBlock.result.flag == 0)
                 {
                     LockTag("01", tag_id);
+                    result = true;
+                }
+                else {
+                    MessageBox.Show("标签写入NFC地址失败！\r\r\n\n\n=====失 败 原 因====== \r\r\n\n\n 1：标签已经离开读卡器，不在读取范围。\r\n 2：标签已经写入过信息。\r\r\n  =====注  意======\r\r\n写入信息时候务必将贴有标签图书放在读卡器上,否则将会导致写入信息失败！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    result = false;
+                    btnClear_Click(null, null);
                 }
             }
             //DisplayRcvInf(rcvBuffer, "写多块数据返回：");
@@ -1716,6 +1790,201 @@ namespace RFIDStation
         private void button1_Click(object sender, EventArgs e)
         {
            
+        }
+
+        private void txtTagID_Properties_ButtonClick(object sender, Editor.Controls.ButtonPressedEventArgs e)
+        {
+            xtraTabControl1.SelectedTabPage = xtraTabPage2;
+            if (null != txtTagID.EditValue && txtTagID.Text.Length > 12)
+            {
+
+                try
+                {
+                    var bookinfoExt = TagInfoDAL.SelectBookinfoExt(txtTagID.Text.Trim());
+                    if (null != bookinfoExt)
+                    {
+                        var bookInfoList = TagInfoDAL.SelectBookInfoExtendList(bookinfoExt.isbn_no);
+                        if (bookInfoList.Count() > 0)
+                        {
+                            var bookInfoExtend = bookInfoList.FirstOrDefault();
+                            this.barCodeISBN.Text = bookInfoExtend.isbn_no;
+                            this.txtBookName.Text = bookInfoExtend.book_name;
+                            this.txtAuthor.Text = bookInfoExtend.author;
+                            this.txtBrief.Text = bookInfoExtend.brief;
+                            this.txtCreateTime.Text = bookInfoExtend.create_time.ToString();
+                            this.txtDescribe.Text = bookInfoExtend.describe;
+                            this.txtPress.Text = bookInfoExtend.press;
+                            this.txtPrice.Text = bookInfoExtend.price.ToString();
+                            this.txtPublicate_date.Text = bookInfoExtend.publication_date.ToString();
+                            this.txtImgurl.Text = bookInfoExtend.imgurl == null ? "" : bookInfoExtend.imgurl.Trim();
+                            txtISBNRO.Text = bookInfoExtend.isbn_no.Trim();
+                            txtMinAge.Text = bookInfoExtend.min_age;
+                            txtMaxAge.Text = bookInfoExtend.max_age;
+                            txtRating.EditValue = bookInfoExtend.recommendation;
+                            if (!string.IsNullOrEmpty(bookInfoExtend.topical_code) && !string.IsNullOrEmpty(bookInfoExtend.topical_name))
+                            {
+                                var topicalSource = chkTopicalName.DataSource as List<BookTopicalCheckItem>;
+                                topicalSource.ForEach(item => item.isChecked = false);
+                                var topical_codes = bookInfoExtend.topical_code.Split(new char[] { ',' });
+                                var topical_names = bookInfoExtend.topical_name.Split(new char[] { ',' });
+                                if (topical_names.Count() == topical_names.Count())
+                                {
+                                    topical_codes.ToList().ForEach(code =>
+                                    {
+                                        for (int i = 0; i < topicalSource.Count; i++)
+                                        {
+                                            var item = topicalSource[i];
+                                            if (item.topical_code == code)
+                                            {
+                                                item.isChecked = true;
+                                                continue;
+                                            }
+                                        }
+                                    });
+                                }
+                            }
+                            chkTopicalName.Refresh();
+                            imageSlider1.Images.Clear();
+                            if (!string.IsNullOrEmpty(bookInfoExtend.imgurl))
+                            {
+                                this.imageSlider1.Images.Add(ImageExtensions.GetImageFromNet($"http://wdb007.oss-cn-hangzhou.aliyuncs.com/" + bookInfoExtend.imgurl));
+                            }
+                        }
+                    }
+                    else
+                    {
+                        xtraTabPage2.Controls.Cast<Control>().ToList().ForEach(ctr =>
+                        {
+                            if (ctr is Editor.TextEdit)
+                                (ctr as Editor.TextEdit).Text = null;
+                            if (ctr is Editor.SpinEdit)
+                                (ctr as Editor.SpinEdit).EditValue = null;
+                            if (ctr is Editor.MemoEdit)
+                                (ctr as Editor.MemoEdit).EditValue = null;
+                        });
+                    }
+                }
+                catch
+                {
+
+                }
+            }
+        }
+
+        private void btnClear_Click(object sender, Editor.TileItemEventArgs e)
+        {
+            txtTagID.Text = txtISBN.Text = "";
+            txtISBNHidden.Text = "";
+            txtISBN.Focus();
+            txtISBNHidden.Focus();
+            lueBookInfo.Properties.DataSource = null;
+            txtMessage.Clear();
+            b_hasTag = false;
+            this.barCodeISBN2.Text = null;
+        }
+
+        private void buttonReadTags_Click(object sender, Editor.TileItemEventArgs e)
+        {
+            if (serialDevice < 0)
+            {
+                MessageBox.Show("请先打开串口");
+                autoTiggerTimer.Enabled = false;
+                return;
+            }
+            if (!autoTiggerTimer.Enabled)
+            {
+                autoTiggerTimer.Enabled = true;
+            }
+            clearOpResult();
+
+            Byte[] buffer = new Byte[255];
+            ushort[] addrArray = new ushort[2];
+            Byte mode = 0;
+
+            ISO15693_UIDPARAM pGetUid = new ISO15693_UIDPARAM();
+            pGetUid.uid = new Byte[hfReaderDll.HFREADER_ISO15693_SIZE_UID * hfReaderDll.HFREADER_ISO15693_MAX_UID_NUM];
+            Byte[] sendBuffer = new Byte[1024];
+            Byte[] rcvBuffer = new Byte[1024];
+
+            if (!GetDeviceAddr(addrArray))
+            {
+                return;
+            }
+
+            if (this.radioButtonReadTagNormal.Checked)
+            {
+                mode = hfReaderDll.HFREADER_READ_UID_NORMAL;
+            }
+            else
+            {
+                mode = hfReaderDll.HFREADER_READ_UID_REPEAT;
+            }
+
+            while (bOperatingSerial) ;
+            bOperatingSerial = true;
+            int rlt = hfReaderDll.iso15693GetUid(serialDevice, addrArray[0], addrArray[1], mode, ref pGetUid, sendBuffer, rcvBuffer);
+            bOperatingSerial = false;
+            if (rlt > 0)
+            {
+                //this.textBoxOpISO15693TagRltSrcAddr.Text = pGetUid.result.srcAddr.ToString("X").PadLeft(4, '0');
+                //this.textBoxOpISO15693TagRltDestAddr.Text = pGetUid.result.targetAddr.ToString("X").PadLeft(4, '0');
+
+
+                if (pGetUid.num > 0)
+                {
+                    int i = 0, j = 0;
+                    String s;
+                    for (i = 0; i < pGetUid.num; i++)
+                    {
+                        s = "";
+                        for (j = 0; j < 8; j++)
+                        {
+                            s += pGetUid.uid[i * 8 + j].ToString("X").PadLeft(2, '0');
+                        }
+                        b_hasTag = true;
+                        txtTagID.Text = s;
+                    }
+                    //this.textBoxReadTagNum.Text = this.listBoxUID.Items.Count.ToString("X").PadLeft(2, '0');
+                    //this.textBoxRemainTagNum.Text = pGetUid.remainNum.ToString("X").PadLeft(2, '0');
+                }
+            }
+            if (!string.IsNullOrEmpty(txtISBN.Text) && !string.IsNullOrEmpty(txtTagID.Text))
+            {
+                btnSave_Click(null, null);
+            }
+            txtISBN.Focus();
+            txtISBNHidden.Focus();
+
+            //DisplayRcvInf(rcvBuffer, "查询场内标签返回：");
+            //DisplaySendInf(sendBuffer, "查询场内标签：");
+        }
+
+        private void btn_ReadTagData_ItemClick(object sender, Editor.TileItemEventArgs e)
+        {
+            var tag_id = txtTagID.Text.Trim();
+            if (!string.IsNullOrEmpty(tag_id))
+            {
+                ReadTagData(data=> 
+                {
+                    string newLine = DateTime.Now.ToString() + $"  标签【{tag_id}】内容-->" + data +"\r\n";
+                    txtMessage.AppendText(Environment.NewLine);
+                    txtMessage.AppendText(Environment.NewLine+txtMessage.Text.Insert(0, newLine));
+                    txtMessage.ScrollToCaret();
+                    return false;
+                }, tag_id);
+            }
+        }
+
+        private void btnSave_ItemClick(object sender, Editor.TileItemEventArgs e)
+        {
+            try
+            {
+                SaveISBN();
+            }
+            catch (Exception ee)
+            {
+                MessageBox.Show("系统异常" + ee.Message, "系统提示");
+            }
         }
     }
 }
